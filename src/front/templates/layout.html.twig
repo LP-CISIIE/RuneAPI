@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Racoin</title>
+    <link rel="stylesheet" href="../src/front/content/materialize/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        {% include "header.html.twig" %}
+    </header>
+    <br/>
+    <br/>
+    <br/>
+    <div id="content" class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+
+    <script src="../src/front/content/jquery-2.2.0.min.js"></script>
+    <script src="../src/front/content/materialize/js/materialize.min.js"></script>
+</body>
+</html>

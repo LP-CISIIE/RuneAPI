@@ -1,0 +1,13 @@
+{
+	"require": {
+		"slim/slim": "2.*",
+		"slim/views": "*",
+		"twig/twig": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"api\\controller\\" : "src/api/",
+			"front\\controller\\" : "src/front/"
+		}
+	}
+}
