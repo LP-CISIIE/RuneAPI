@@ -5,9 +5,9 @@
 		"twig/twig": "*"
 	},
 	"autoload": {
-		"psr-4": {
-			"api\\controller\\" : "src/api/",
-			"front\\controller\\" : "src/front/"
+		"psr-0": {
+			"api\\" : "src",
+			"front\\" : "src"
 		}
 	}
 }
