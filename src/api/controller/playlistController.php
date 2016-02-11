@@ -41,7 +41,9 @@ class playlistController
 
     public static function getPlaylist($app)
     {
+        $array = [];
         var_dump($html =file_get_contents($app->rootUri . "/db/?cmd=playlist"));
+        var_dump(explode(':', $html));
 //        $dom = new \DOMDocument();
 //        var_dump($dom->item(0));
 //        $dom->loadHTML($html);

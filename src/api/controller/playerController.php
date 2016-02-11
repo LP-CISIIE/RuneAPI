@@ -23,7 +23,13 @@ class playerController
                 self::previous($app);
                 break;
             default :
-                echo 'it works';
+                $app->response->headers->set('Content-Type', 'application/json');
+                $app->response->setStatus(400);
+                echo json_encode(array(
+                    "HTTP" => 400,
+                    "Object" => "action",
+                    "message" => "Wrong or missing parameter"
+                ));
                 break;
         }
     }
