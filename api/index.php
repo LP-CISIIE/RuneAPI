@@ -3,6 +3,8 @@
 require '../vendor/autoload.php';
 use api\controller\settingsController;
 use api\controller\playerController;
+use api\controller\soundController;
+
 
 
 
@@ -12,6 +14,12 @@ $app = new Slim\Slim(array(
 
 $app->contentType('text/html; charset=utf-8');
 $app->rootUri = "http://90.48.35.147";
+
+
+$app->get('/volume/:vol', function($vol) use ($app) {
+    soundController::volume($app, $vol);
+})->name('volume');
+
 
 
 $app->get('/', function() use ($app) {
