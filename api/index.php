@@ -4,8 +4,7 @@ require '../vendor/autoload.php';
 use api\controller\settingsController;
 use api\controller\playerController;
 use api\controller\soundController;
-
-
+use api\controller\playlistController;
 
 
 $app = new Slim\Slim(array(
@@ -37,6 +36,11 @@ $app->get('/settings', function() use ($app) {
 $app->get('/player/:action', function($action) use ($app) {
     playerController::player($app, $action);
 })->name('player');
+
+
+$app->get('/playlist/:action', function($action) use ($app) {
+    playlistController::playlist($app, $action);
+})->name('playlist');
 
 
 $app->run();

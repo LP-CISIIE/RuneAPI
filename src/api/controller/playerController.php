@@ -12,6 +12,7 @@ class playerController
                 break;
             case 'pause' :
                 self::pause($app);
+                break;
             case 'stop' :
                 self::stop($app);
                 break;
@@ -29,26 +30,26 @@ class playerController
 
     public static function play($app)
     {
-//        $app->response->headers->set('Content-Type', 'application/json');
+        $app->response->headers->set('Content-Type', 'application/json');
 
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=play');
-        var_dump ($http_response_header[0]);
-        echo strstr($html, 'OK');
-//        echo($http_response_header[0]);
-//        echo strcmp("OK", $html);
-        if(strstr($html, 'OK') == "OK"){
+        $response = mb_convert_encoding($html, 'UTF-8');
+
+        if(strcmp("OK ", $response)){
             $app->response->setStatus(200);
             echo json_encode(array(
+                "HTTP" => 200,
                 "Object" => "play",
                 "message" => "Done"
             ));
         }else{
-//            $app->response->setStatus(500);
-//            echo json_encode(array(
-//                "Object" => "play",
-//                "message" => "Error"
-//            ));
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "play",
+                "message" => "Error"
+            ));
         }
     }
 
@@ -57,6 +58,24 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=stop');
+        $response = mb_convert_encoding($html, 'UTF-8');
+
+        if(strcmp("OK ", $response)){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "stop",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "stop",
+                "message" => "Error"
+            ));
+        }
+
     }
 
     public static function pause($app)
@@ -64,6 +83,23 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=pause');
+        $response = mb_convert_encoding($html, 'UTF-8');
+
+        if(strcmp("OK ", $response)){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "pause",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "pause",
+                "message" => "Error"
+            ));
+        }
     }
 
     public static function next($app)
@@ -71,6 +107,23 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=next');
+        $response = mb_convert_encoding($html, 'UTF-8');
+
+        if(strcmp("OK ", $response)){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "next",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "next",
+                "message" => "Error"
+            ));
+        }
     }
 
     public static function previous($app)
@@ -78,5 +131,22 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=previous');
+        $response = mb_convert_encoding($html, 'UTF-8');
+
+        if(strcmp("OK ", $response)){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "previous",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "previous",
+                "message" => "Error"
+            ));
+        }
     }
 }
