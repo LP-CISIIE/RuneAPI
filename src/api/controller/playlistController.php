@@ -81,9 +81,10 @@ class playlistController
 
     public static function getPlaylist($app)
     {
-        $array = [];
-        var_dump($html =file_get_contents($app->rootUri . "/db/?cmd=playlist"));
-        var_dump(explode(':', $html));
+        $values = array();
+        echo $html = file_get_contents($app->rootUri . "/db/?cmd=playlist");
+        var_dump($content = preg_match("#le*:#", $html));
+
 //        $dom = new \DOMDocument();
 //        var_dump($dom->item(0));
 //        $dom->loadHTML($html);
