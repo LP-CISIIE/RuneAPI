@@ -23,20 +23,60 @@ class playlistController
             case 'playlist' :
                 self::getPlaylist($app);
                 break;
+            case 'randomOn' :
+                self::randomOn($app);
+                break;
+            case 'randomOff' :
+                self::randomOff($app);
+                break;
             default:
                 echo "It works";
                 break;
         }
     }
 
-    public static function repeatOn($app)
-    {
-        $html = file_get_contents($app->rootUri . "/command/?cmd=repeat%200");
-    }
-
     public static function repeatOff($app)
     {
+        $html = file_get_contents($app->rootUri . "/command/?cmd=repeat%200");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "repeat on",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "repeat off",
+                "message" => $html
+            ));
+        }
+    }
+
+    public static function repeatOn($app)
+    {
         $html = file_get_contents($app->rootUri . "/command/?cmd=repeat%201");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "repeat off",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "repeat off",
+                "message" => $html
+            ));
+        }
     }
 
     public static function getPlaylist($app)
@@ -50,5 +90,49 @@ class playlistController
 //        $xpath = new \DOMXpath($dom);
 
 
+    }
+
+    public static function randomOff($app)
+    {
+        $html = file_get_contents($app->rootUri . "/command/?cmd=random%200");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "random on",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "random on",
+                "message" => $html
+            ));
+        }
+    }
+
+    public static function randomOn($app)
+    {
+        $html = file_get_contents($app->rootUri . "/command/?cmd=random%201");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "random off",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "random off",
+                "message" => $html
+            ));
+        }
     }
 }

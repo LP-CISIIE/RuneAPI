@@ -22,7 +22,7 @@ class soundController
             $app->response->setStatus(500);
             echo json_encode(array(
                 "HTTP" => 500,
-                "Object" => "play",
+                "Object" => "volume",
                 "message" => $html
             ));
         }
