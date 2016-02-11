@@ -6,25 +6,26 @@ class soundController
 {
     public static function volume($app, $vol)
     {
-    	//$app->response->headers->set('Content-Type', 'application/json');
-    	$array = array();
-    	$file = file_get_contents($app->rootUri.'/command/?cmd=setvol%200'.$vol);
-    	
-    	//si 400 ou 500
-    	if (!isset($http_response_header[0]) || preg_match("#[4-5][0-9]{2}#", $http_response_header[0])) {
-        	array_push($array,array('volume' => $vol,
-        							'Code'=> $http_response_header[0]
+        $app->response->headers->set('Content-Type', 'application/json');
 
-        		) );
-    	} else {
-    	array_push($array,array('volume' => $vol,
-    							'code' => $http_response_header[0]
-    		) );
+        $html = file_get_contents($app->rootUri . '/command/?cmd=setvol%200' . $vol);
+        $response = trim($html);
 
-    	}
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "volume",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "play",
+                "message" => $html
+            ));
+        }
 
-    	
-    	echo json_encode($array);
-    	
     }
 }

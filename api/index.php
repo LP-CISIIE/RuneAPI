@@ -10,7 +10,7 @@ $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
 ));
 $app->contentType('text/html; charset=utf-8');
-$app->rootUri = "http://90.48.35.147";
+$app->rootUri = "http://192.168.1.14";
 //90.48.35.147   192.168.1.14
 
 $app->get('/', function() use ($app) {

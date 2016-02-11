@@ -40,9 +40,10 @@ class playerController
 
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=play');
-        $response = mb_convert_encoding($html, 'UTF-8');
+        // delete the blank space from the answer
+        $response = trim($html);
 
-        if(strcmp("OK ", $response)){
+        if($response == 'OK'){
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
@@ -54,7 +55,7 @@ class playerController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "play",
-                "message" => "Error"
+                "message" => $html
             ));
         }
     }
@@ -64,9 +65,9 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=stop');
-        $response = mb_convert_encoding($html, 'UTF-8');
+        $response = trim($html);
 
-        if(strcmp("OK ", $response)){
+        if($response == 'OK'){
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
@@ -78,7 +79,7 @@ class playerController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "stop",
-                "message" => "Error"
+                "message" => $html
             ));
         }
 
@@ -89,9 +90,9 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=pause');
-        $response = mb_convert_encoding($html, 'UTF-8');
+        $response = trim($html);
 
-        if(strcmp("OK ", $response)){
+        if($response == 'OK'){
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
@@ -103,7 +104,7 @@ class playerController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "pause",
-                "message" => "Error"
+                "message" => $html
             ));
         }
     }
@@ -113,9 +114,9 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=next');
-        $response = mb_convert_encoding($html, 'UTF-8');
+        $response = trim($html);
 
-        if(strcmp("OK ", $response)){
+        if($response == 'OK'){
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
@@ -127,7 +128,7 @@ class playerController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "next",
-                "message" => "Error"
+                "message" => $html
             ));
         }
     }
@@ -137,13 +138,13 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=previous');
-        $response = mb_convert_encoding($html, 'UTF-8');
+        $response = trim($html);
 
-        if(strcmp("OK ", $response)){
+        if($response == 'OK'){
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
-                "Object" => "previous",
+                "Object" => "pevious",
                 "message" => "Done"
             ));
         }else{
@@ -151,7 +152,7 @@ class playerController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "previous",
-                "message" => "Error"
+                "message" => $html
             ));
         }
     }
