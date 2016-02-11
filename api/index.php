@@ -4,12 +4,14 @@ require '../vendor/autoload.php';
 use api\controller\settingsController;
 use api\controller\playerController;
 use api\controller\playlistController;
+use api\controller\soundController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
 ));
 $app->contentType('text/html; charset=utf-8');
-$app->rootUri = "http://192.168.1.14";
+$app->rootUri = "http://90.48.35.147";
+//90.48.35.147   192.168.1.14
 
 $app->get('/', function() use ($app) {
 	echo "ça marche";
@@ -26,5 +28,10 @@ $app->get('/player/:action', function($action) use ($app) {
 $app->get('/playlist/:action', function($action) use ($app) {
     playlistController::playlist($app, $action);
 })->name('playlist');
+
+$app->get('/volume/:vol', function($vol) use ($app) {
+    soundController::volume($app, $vol);
+})->name('volume');
+
 
 $app->run();
