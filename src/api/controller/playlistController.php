@@ -29,11 +29,62 @@ class playlistController
             case 'randomOff' :
                 self::randomOff($app);
                 break;
+            case 'soundRepeatOn' :
+                self::soundRepeatOn($app);
+                break;
+            case 'soundRepeatOff' :
+                self::soundRepeatOff($app);
+                break;
             default:
                 echo "It works";
                 break;
         }
     }
+
+    public static function soundRepeatOn($app)
+    {
+        $html = file_get_contents($app->rootUri . "/command/?cmd=single%201");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "sound repeat on",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "repeat off",
+                "message" => $html
+            ));
+        }
+    }
+
+    public static function soundRepeatOff($app)
+    {
+        $html = file_get_contents($app->rootUri . "/command/?cmd=single%201");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "sound repeat on",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "repeat off",
+                "message" => $html
+            ));
+        }
+    }
+
 
     public static function repeatOff($app)
     {
