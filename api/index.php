@@ -5,6 +5,7 @@ use api\controller\settingsController;
 use api\controller\playerController;
 use api\controller\playlistController;
 use api\controller\soundController;
+use api\controller\sourcesController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -34,6 +35,14 @@ if($config){
     $app->get('/volume/:vol', function($vol) use ($app) {
         soundController::volume($app, $vol);
     })->name('volume');
+
+    $app->get('/sources', function() use ($app) {
+        sourcesController::index($app);
+    })->name('sources');
+
+    $app->put('/sources', function() use ($app) {
+        sourcesController::rebuild($app);
+    })->name('rebuild');
 
     $app->run();
 }
