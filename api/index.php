@@ -10,28 +10,30 @@ $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
 ));
 $app->contentType('text/html; charset=utf-8');
-$app->rootUri = "http://192.168.1.14";
-//90.48.35.147   192.168.1.14
+$config = parse_ini_file('config.ini');
 
-$app->get('/', function() use ($app) {
-	echo "ça marche";
-});
+if($config){
+    $app->rootUri = 'http://'.$config['ip'];
 
-$app->get('/settings', function() use ($app) {
-    settingsController::settings($app);
-})->name('annoncesId');
+    $app->get('/', function() use ($app, $config) {
+        echo "ça marche";
+    });
 
-$app->get('/player/:action', function($action) use ($app) {
-    playerController::player($app, $action);
-})->name('player');
+    $app->get('/settings', function() use ($app) {
+        settingsController::settings($app);
+    })->name('annoncesId');
 
-$app->get('/playlist/:action', function($action) use ($app) {
-    playlistController::playlist($app, $action);
-})->name('playlist');
+    $app->get('/player/:action', function($action) use ($app) {
+        playerController::player($app, $action);
+    })->name('player');
 
-$app->get('/volume/:vol', function($vol) use ($app) {
-    soundController::volume($app, $vol);
-})->name('volume');
+    $app->get('/playlist/:action', function($action) use ($app) {
+        playlistController::playlist($app, $action);
+    })->name('playlist');
 
+    $app->get('/volume/:vol', function($vol) use ($app) {
+        soundController::volume($app, $vol);
+    })->name('volume');
 
-$app->run();
+    $app->run();
+}
