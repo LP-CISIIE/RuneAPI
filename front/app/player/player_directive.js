@@ -3,6 +3,7 @@ rune.directive('player', ['$rootScope', function($rootScope) {
     return {
         templateUrl: 'template/player.html',
         link: function(scope) {
+
         }
     };
 }]);
