@@ -1,0 +1,74 @@
+.prority1{
+    background-color: #FF0000;
+    color: white;
+}
+
+.prority2{
+    background-color: #DD5500;
+    color: white;
+}
+
+.prority3{
+    background-color: #BBAA00;
+    color: white;
+}
+
+.prority4{
+    background-color: #99FF00;
+    color: white;
+}
+
+.prority4{
+    background-color: greenyellow;
+    color: white;
+}
+
+#listDiv{
+    border-right: 1px solid silver
+}
+
+#map {
+    height: 50em;
+}
+
+.tableScore, .tableScore2 {
+    height: 20em;
+    overflow-y: auto;
+}
+
+
+#modal0 {
+    width: 40%;
+}
+
+#modal3{
+    width: 40%;
+}
+
+.cool {
+    background-color : #26a69a !important;
+}
+
+.warning {
+    background-color : #ffa726 !important;
+}
+
+.danger {
+    background-color : #e53935 !important;
+}
+
+.finished {
+    background-color : #3F4443 !important;
+    animation: blink 1s steps(5, start) infinite;
+    -webkit-animation: blink 1s steps(5, start) infinite;
+}
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}

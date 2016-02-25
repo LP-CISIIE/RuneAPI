@@ -1,0 +1,1 @@
+var rune = angular.module('rune', []);
