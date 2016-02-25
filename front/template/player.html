@@ -7,9 +7,9 @@
         <li class="waves-effect" ng-click="player_next()"><i class="material-icons">skip_next</i></li>
         <li class="disabled grey-text"><i class="material-icons">chevron_right</i></li>
     </ul>
-    <form action="#">
+    <div class="col l4 offset-l4">
         <p class="range-field">
-            <input type="range" id="volume" min="0" max="100" ng-model="player_volume"/>
+            <input type="range" id="volume" min="0" max="100" ng-model="volume" ng-change="player_volume()"/>
         </p>
-    </form>
+    </div>
 </div>
