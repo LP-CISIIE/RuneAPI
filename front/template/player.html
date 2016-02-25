@@ -1,9 +1,10 @@
 <div class="center">
     <ul class="pagination">
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">skip_previous</i></a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">play_circle_outline</i></a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">skip_next</i></a></li>
+        <li class="waves-effect" ng-click="player_previous()"><a href="#!"><i class="material-icons">skip_previous</i></a></li>
+        <li class="waves-effect" ng-click="player_start()"><a href="#!"><i class="material-icons">play_circle_outline</i></a></li>
+        <li class="waves-effect" ng-click="player_pause()"><a href="#!"><i class="material-icons">pause_circle_outline</i></a></li>
+        <li class="waves-effect" ng-click="player_next()"><a href="#!"><i class="material-icons">skip_next</i></a></li>
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </div>
