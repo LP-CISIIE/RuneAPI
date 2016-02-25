@@ -1,6 +1,9 @@
 rune.controller('PlayerController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
+
         $rootScope.root = "..";
+        $rootScope.volume = "";
+
         // start music
         $scope.player_start = function (){
             $http.get($rootScope.root + '/api/player/play')
@@ -33,7 +36,13 @@ rune.controller('PlayerController',
                 })
         };
 
-
+        // volume music
+        $scope.player_volume = function (){
+            $http.get($rootScope.root + '/api/volume/' + $rootScope.volume)
+                .then(function(response){
+                    console.log(response);
+                })
+        };
 
     }]
 );
