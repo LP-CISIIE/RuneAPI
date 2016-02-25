@@ -1,1 +1,1 @@
-var rune = angular.module('rune', []);
+var rune = angular.module('rune', ['ui.materialize']);
