@@ -23,12 +23,23 @@
 
 </head>
 <body ng-app="rune">
-<div id="MainWrap" ng-controller="PlayerController" class="row">
-    <div class="row">
-        <div class="center">
-            <h3>RuneAudio</h3>
+    <div id="main_wrap">
+        <div class="row">
+            <div class="center">
+                <h3>RuneAudio</h3>
+            </div>
         </div>
     </div>
-</div>
+    <div id="player_wrap" ng-controller="PlayerController" class="row">
+        <div class="center">
+            <ul class="pagination">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">skip_previous</i></a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">play_circle_outline</i></a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">skip_next</i></a></li>
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
