@@ -15,6 +15,15 @@
     <script src="app/player/player_controller.js"></script>
     <script src="app/player/player_directive.js"></script>
 
+    <script src="app/playlist/playlist.js"></script>
+    <script src="app/playlist/playlist_controller.js"></script>
+    <script src="app/playlist/playlist_current.js"></script>
+    <script src="app/playlist/playlist_directive.js"></script>
+
+    <script src="app/rune/rune.js"></script>
+    <script src="app/rune/rune_controller.js"></script>
+    <script src="app/rune/rune_current.js"></script>
+
     <script src="lib/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,14 +33,35 @@
 </head>
 <body ng-app="rune">
     <div id="main_wrap">
+
+        <ul id="sidebar" class="side-nav">
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    yolo
+                </ul>
+            </li>
+        </ul>
+
+        <div class="row">
+            <a href="#" class="button-collapse" data-activates="sidebar" data-sidenav="left" data-menuwidth="500" data-closeonclick="false">
+                Show side-nav
+            </a>
+        </div>
+
+        <!--<div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav" data-sidenav="left" data-closeonclick="false">-->
+            <!--<i class="mdi-navigation-menu"></i></a>-->
+        <!--</div>-->
+
         <div class="row">
             <div class="center">
                 <h3>RuneAudio</h3>
             </div>
         </div>
-    </div>
-    <div id="player_wrap" ng-controller="PlayerController" class="row">
-        <player />
+        <div class="row">
+            <div id="player_wrap" ng-controller="PlayerController" class="row">
+                <player />
+            </div>
+        </div>
     </div>
 </body>
 </html>
