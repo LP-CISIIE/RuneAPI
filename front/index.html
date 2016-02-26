@@ -11,6 +11,8 @@
 
     <script src="app/app.js"></script>
 
+    <script src="app/main/main_controller.js"></script>
+
     <script src="app/player/player.js"></script>
     <script src="app/player/player_controller.js"></script>
     <script src="app/player/player_directive.js"></script>
@@ -23,6 +25,7 @@
     <script src="app/rune/rune.js"></script>
     <script src="app/rune/rune_controller.js"></script>
     <script src="app/rune/rune_current.js"></script>
+    <script src="app/rune/rune_directive.js"></script>
 
     <script src="lib/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
@@ -32,14 +35,15 @@
 
 </head>
 <body ng-app="rune">
-    <div id="main_wrap">
+    <div id="main_wrap" ng-controller="MainController">
         <header>
             <!--sidebar-->
             <ul id="sidebar" class="side-nav" style="width: 240px; left: 0px;">
                 <li class="no-padding">
-                    <ul class="collapsible collapsible-accordion">
-                        yolo
-                    </ul>
+                    <a href="#" ng-click="runemanager=false">Player</a>
+                </li>
+                <li class="no-padding">
+                    <a href="#" ng-click="runemanager=true">Rune Manager</a>
                 </li>
             </ul>
 
@@ -53,10 +57,12 @@
             </div>
         </header>
 
-        <div class="row">
-            <div id="player_wrap" ng-controller="PlayerController" class="row">
-                <player />
-            </div>
+        <div class="row" ng-controller="PlayerController">
+            <player ng-hide="runemanager" />
+        </div>
+
+        <div class="row" ng-controller="RuneController">
+            <runemanager ng-show="runemanager"/>
         </div>
     </div>
 </body>

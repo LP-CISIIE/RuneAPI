@@ -1,6 +1,7 @@
 rune.controller('PlayerController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
         $rootScope.root = "..";
+        $scope.playing = false;
 
         // start music
         $scope.player_start = function (){
@@ -8,6 +9,8 @@ rune.controller('PlayerController',
                 .then(function(response){
                     console.log(response);
                 })
+
+            $scope.playing = true;
         };
 
         // stop music
@@ -16,6 +19,8 @@ rune.controller('PlayerController',
                 .then(function(response){
                     console.log(response);
                 })
+
+            $scope.playing = false;
         };
 
         // previous music

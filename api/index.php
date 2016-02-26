@@ -6,6 +6,7 @@ use api\controller\playerController;
 use api\controller\playlistController;
 use api\controller\soundController;
 use api\controller\sourcesController;
+use api\controller\testController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -43,6 +44,10 @@ if($config){
     $app->put('/sources', function() use ($app) {
         sourcesController::rebuild($app);
     })->name('rebuild');
+
+    $app->get('/test', function() use ($app) {
+        testController::test($app);
+    })->name('test');
 
     $app->run();
 }

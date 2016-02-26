@@ -1,0 +1,23 @@
+<div class="center">
+    <h4><i>Rune Manager</i></h4>
+</div>
+<div class="row">
+    <div class="col l4 offset-l4">
+        <table class="highlight striped centered responsive-table">
+            <thead>
+            <tr>
+                <th data-field="id">Runes</th>
+                <th data-field="name">IP</th>
+                <th data-field="name">Select</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="rune in runes | orderBy: 'rune.label' ">
+                <td>{{ rune.label }}</td>
+                <td>{{ rune.ip }}</td>
+                <td><button class="btn" ng-model="rune">Selectionner</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
