@@ -6,6 +6,7 @@ use api\controller\playerController;
 use api\controller\playlistController;
 use api\controller\soundController;
 use api\controller\sourcesController;
+use api\controller\gestionController;
 use api\controller\testController;
 
 $app = new Slim\Slim(array(
@@ -20,6 +21,13 @@ if($config){
     $app->get('/', function() use ($app, $config) {
         echo "ça marche";
     });
+
+
+    $app->get('/gestion/:pos/:temps', function($pos, $temps) use ($app) {
+        gestionController::change($app, $pos, $temps);
+    })->name('gestion');
+
+
 
     $app->get('/settings', function() use ($app) {
         settingsController::settings($app);
