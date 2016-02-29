@@ -8,6 +8,7 @@ use api\controller\soundController;
 use api\controller\sourcesController;
 use api\controller\gestionController;
 use api\controller\testController;
+use api\controller\mdpController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -27,6 +28,10 @@ if($config){
         gestionController::change($app, $pos, $temps);
     })->name('gestion');
 
+
+$app->get('/mpd', function() use ($app) {
+	mdpController::getMpd($app);
+})->name('mpd');
 
 
     $app->get('/settings', function() use ($app) {
