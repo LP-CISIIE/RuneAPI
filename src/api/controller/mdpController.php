@@ -4,8 +4,7 @@
 	class mdpController{
 		public static function getMpd($app){
 			$app->response->headers->set('Content-Type', 'application/json');
-	        $tab = array();
-
+	        
 	        // l'url du html à récupérer
 	        $html = file_get_contents($app->rootUri . "mpd/");
 	        // on créé un élément DOM
@@ -44,6 +43,8 @@
 	            }
 	            return $value;
         	}
+
+        	$tab = array();
 
 	        //Audio output interface
 	        $tab["AudioOutput"] = getSelectValue('//select[@id="audio-output-interface"]/*', $xpath);
@@ -95,8 +96,46 @@
 	        $tab["AutoUpdate"] = getSelectValue('//select[@name="conf[auto_update]"]/*', $xpath);
 	        $tab["AutoUpdate"]["select"] = getSelectValue('//select[@name="conf[auto_update]"]/option[@selected=\'selected\']', $xpath);
 
-	        var_dump($tab);
-	       
+	        var_dump($tab);	       
+		}
+
+		public function setOutput($app, $output){
+			$url = $app->rootUri . "mpd/";
+			if($output == "analogique"){
+				$out = "bcm2835 ALSA_1";
+			}else if($output == "hdmi"){
+				$out = "bcm2835 ALSA_2";
+			}else{
+				$out = "error";
+			}
+
+			if($out != "error"){
+				$data = array('ao' => $out);
+				$options = array(
+					        'http' => array(
+					        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+					        'method'  => 'POST',
+					        'content' => http_build_query($data),
+				   		)
+				);
+
+				$context  = stream_context_create($options);
+				$result = file_get_contents($url, false, $context);
+
+				$app->response->setStatus(200);
+	            echo json_encode(array(
+	                "HTTP" => 200,
+	                "Object" => "Output",
+	                "message" => "Done"
+	            ));
+			}else{
+				$app->response->setStatus(500);
+	            echo json_encode(array(
+	                "HTTP" => 500,
+	                "Object" => "Output",
+	                "message" => "Wrong url"
+	            ));
+			}
 		}
 	}
 ?>

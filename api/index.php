@@ -28,11 +28,13 @@ if($config){
         gestionController::change($app, $pos, $temps);
     })->name('gestion');
 
+	$app->get('/mpd', function() use ($app) {
+		mdpController::getMpd($app);
+	})->name('mpd');
 
-$app->get('/mpd', function() use ($app) {
-	mdpController::getMpd($app);
-})->name('mpd');
-
+	$app->put('/mpd/:output', function($output) use ($app) {
+		mdpController::setOutput($app, $output);
+	})->name('setOutput');
 
     $app->get('/settings', function() use ($app) {
         settingsController::settings($app);
