@@ -73,5 +73,41 @@ if($config){
         networkController::setNetwork($net,$app);
     })->name('setNetwork');
 
+    $app->post('/runeInfo', function() use ($app){
+        //$texte = $app->request->getBody();
+        $texte = array(
+            "id" => 3,
+            "ip" => "192.136.0.3",
+            "nom" => "chambre"
+        );
+        postRuneInfo($texte);
+    });
+
+    $app->get('/runeInfo', function() use ($app){
+        header("Content-Type: application/json");
+        if(file_exists('runeInfo.json')){
+            $runeInfo = file_get_contents('runeInfo.json');
+            echo $runeInfo;
+        }
+    });
+
     $app->run();
+}
+
+
+//fonction d'ecriture dans le fichier runeInfo
+function postRuneInfo($texte){
+    $file = fopen("runeInfo.json", "r+");
+    $runeInfo = file_get_contents("runeInfo.json");
+    $decode = json_decode($runeInfo);
+
+    // on efface le contenu existant
+    $ecrire = fopen('runeInfo.json',"w");
+    ftruncate($ecrire,0);
+    //creation du json a ecrire
+    array_push($decode->runeInfo, $texte);
+    //re encodage en json et ajout dans le fichier
+    $str = json_encode($decode);
+    fputs($file, $str);
+    fclose($file);
 }
