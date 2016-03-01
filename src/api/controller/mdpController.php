@@ -96,7 +96,11 @@
 	        $tab["AutoUpdate"] = getSelectValue('//select[@name="conf[auto_update]"]/*', $xpath);
 	        $tab["AutoUpdate"]["select"] = getSelectValue('//select[@name="conf[auto_update]"]/option[@selected=\'selected\']', $xpath);
 
-	        var_dump($tab);	       
+	        $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "message" => $tab
+            ));	       
 		}
 
 		public function setOutput($app, $output){

@@ -23,7 +23,6 @@
 	        	$objDom = $xpath->query($query);
 		        $i = 0;
 		        $tmp = null;
-		        var_dump($objDom[0]);
 		        while($i < $objDom->length){
 		        	$network = explode(" ", trim(str_replace(" " 	,"",$objDom[$i]->textContent)));
 			        $tmp[$i]["nom"] = $network[0];			     
@@ -36,7 +35,12 @@
 	        //Network interfaces
 	        $tab["NetworkInterface"] = getFormValue('//form[@id="network-interface-list"]/*', $xpath);
 
-	        var_dump($tab);
+	        $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "message" => $tab
+            ));
+
 
 		}
 
@@ -53,13 +57,11 @@
 	        libxml_clear_errors();
 	        // on créé un objet Xpath avec le DOM, Xpath permet de jouer plus facilement avec les nodes
 	        $xpath = new \DOMXpath($dom);
-	        var_dump($html);
 
 	        function getFormValue($query, $xpath){
 	        	$objDom = $xpath->query($query);
 		        $i = 0;
 		        $tmp = null;
-		        var_dump($objDom[1]);
 		        while($i < $objDom->length){		     
 	        		$param = explode(":", trim($objDom[$i]->textContent));
 		        	$tmp[$i]["name"] = $param[0];
@@ -94,7 +96,12 @@
 	        $tab["ConfigInterfaces"] = getSelectValue('//select[@id="dhcp"]/*', $xpath);
 	        $tab["ConfigInterfaces"]["select"] = getSelectValue('//select[@id="dhcp"]/option[@selected=\'selected\']', $xpath);
 
-	        var_dump($tab);
+	        
+	        $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "message" => $tab
+            ));
 		}
 	}
 
