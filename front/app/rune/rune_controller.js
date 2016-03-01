@@ -24,5 +24,13 @@ rune.controller('RuneController',
                 });
         };
 
+        $scope.runePush = function(newRune){
+            console.log(JSON.stringify(newRune));
+            $http.post($rootScope.root + '/api/runeInfo', JSON.stringify(newRune))
+                .then(function(response){
+                    console.log(response);
+                })
+        };
+
         $scope.rune_info();
     }]);

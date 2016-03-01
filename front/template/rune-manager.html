@@ -19,5 +19,16 @@
             </tr>
             </tbody>
         </table>
+
+        <!--add new rune-->
+        <table>
+            <tbody>
+            <tr ng-repeat="rune in runes | orderBy: 'rune.label' ">
+                <td><input type="text" placeholder="Label" ng-model="addRune.label" ng-required="true"/></td>
+                <td><input type="text" placeholder="IP" ng-model="addRune.ip" ng-required="true" /></td>
+                <td><button class="btn" ng-model="addRune" ng-click="add_rune(addRune)">Ajouter</button></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>

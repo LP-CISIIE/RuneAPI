@@ -3,7 +3,6 @@
  */
 rune.service('Rune', ['$http', '$rootScope', function($http, $rootScope){
     var Rune = function(data){
-        this.id = data.id;
         this.ip = data.ip;
         this.label = data.label;
     };

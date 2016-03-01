@@ -74,11 +74,11 @@ if($config){
     })->name('setNetwork');
 
     $app->post('/runeInfo', function() use ($app){
-        $data = $app->request->post();
+        $data = $app->request->getBody();
+        $data2 = json_decode($data);
         $rune = array(
-            "id" => $data['id'],
-            "ip" => $data['ip'],
-            "label" => $data['label']
+            "ip" => $data2->ip,
+            "label" => $data2->label
         );
         postRuneInfo($rune);
     });
