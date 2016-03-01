@@ -9,6 +9,7 @@ use api\controller\sourcesController;
 use api\controller\gestionController;
 use api\controller\testController;
 use api\controller\mdpController;
+use api\controller\networkController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -63,6 +64,14 @@ if($config){
     $app->get('/test', function() use ($app) {
         testController::test($app);
     })->name('test');
+
+    $app->get('/network', function() use ($app) {
+        networkController::getNetwork($app);
+    })->name('network');
+
+    $app->get('/network/edit/:net', function($net) use ($app) {
+        networkController::setNetwork($net,$app);
+    })->name('setNetwork');
 
     $app->run();
 }
