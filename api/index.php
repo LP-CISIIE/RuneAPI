@@ -74,20 +74,28 @@ if($config){
     })->name('setNetwork');
 
     $app->post('/runeInfo', function() use ($app){
-        //$texte = $app->request->getBody();
-        $texte = array(
-            "id" => 3,
-            "ip" => "192.136.0.3",
-            "nom" => "chambre"
+        $data = $app->request->post();
+        $rune = array(
+            "id" => $data['id'],
+            "ip" => $data['ip'],
+            "nom" => $data['name']
         );
-        postRuneInfo($texte);
+        postRuneInfo($rune);
     });
 
     $app->get('/runeInfo', function() use ($app){
         header("Content-Type: application/json");
         if(file_exists('runeInfo.json')){
+            $app->response->setStatus(200);
             $runeInfo = file_get_contents('runeInfo.json');
             echo $runeInfo;
+        }else{
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "runeInfo",
+                "message" => "There is no information to display"
+            ));
         }
     });
 
@@ -96,16 +104,26 @@ if($config){
 
 
 //fonction d'ecriture dans le fichier runeInfo
-function postRuneInfo($texte){
-    $file = fopen("runeInfo.json", "r+");
-    $runeInfo = file_get_contents("runeInfo.json");
-    $decode = json_decode($runeInfo);
+function postRuneInfo($rune)
+{
+    $file = fopen("runeInfo.json", "w+");
 
-    // on efface le contenu existant
-    $ecrire = fopen('runeInfo.json',"w");
-    ftruncate($ecrire,0);
+    // if file is not empty
+    if ($file && filesize("runeInfo.json") != 0) {
+
+        $data = fread($file, filesize("runeInfo.json"));
+        $decode = json_decode($data);
+        // on efface le contenu existant
+        $ecrire = fopen('runeInfo.json', "w");
+        ftruncate($ecrire, 0);
+    }else{
+        // if file is empty
+        $decode = (object)array('runeInfo' => array());
+    }
+
     //creation du json a ecrire
-    array_push($decode->runeInfo, $texte);
+    array_push($decode->runeInfo, $rune);
+    echo(json_encode($decode));
     //re encodage en json et ajout dans le fichier
     $str = json_encode($decode);
     fputs($file, $str);
