@@ -78,7 +78,7 @@ if($config){
         $rune = array(
             "id" => $data['id'],
             "ip" => $data['ip'],
-            "nom" => $data['name']
+            "label" => $data['label']
         );
         postRuneInfo($rune);
     });
