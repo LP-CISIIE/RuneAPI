@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
+
 use api\controller\settingsController;
 use api\controller\playerController;
 use api\controller\playlistController;

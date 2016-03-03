@@ -4,7 +4,8 @@
 rune.controller('RuneController',
     ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', function($scope, $http, $rootScope, runeCurrent, Rune){
 
-        $scope.runes = [];
+        $rootScope.runes = [];
+        $scope.runes = $rootScope.runes;
         $scope.$watch('runeCurrent.rune', function (newValue) {
             if (newValue != 0 && newValue != undefined) {
                 $rootScope.root = runeCurrent.rune.ip
@@ -17,8 +18,9 @@ rune.controller('RuneController',
                 .then(function(response){
                     //console.log(response);
                     response.data.runeInfo.forEach(function(rune){
-                        console.log(rune);
-                        $scope.runes.push(new Rune(rune));
+                        //console.log(rune);
+                        $rootScope.runes.push(new Rune(rune));
+                        //console.log($scope.runes);
                         console.log($scope.runes);
                     });
                 });

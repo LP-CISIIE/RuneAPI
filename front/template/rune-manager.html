@@ -19,14 +19,17 @@
             </tr>
             </tbody>
         </table>
-
-        <!--add new rune-->
-        <table>
+    </div>
+</div>
+<div class="row">
+    <!--add new rune-->
+    <div class="col l4 offset-l4">
+        <table class="highlight striped centered responsive-table">
             <tbody>
-            <tr ng-repeat="rune in runes | orderBy: 'rune.label' ">
+            <tr>
                 <td><input type="text" placeholder="Label" ng-model="addRune.label" ng-required="true"/></td>
                 <td><input type="text" placeholder="IP" ng-model="addRune.ip" ng-required="true" /></td>
-                <td><button class="btn" ng-model="addRune" ng-click="add_rune(addRune)">Ajouter</button></td>
+                <td><button class="btn-floating btn-large waves-effect waves-light red" ng-model="addRune" ng-click="add_rune(addRune)"><i class="material-icons">add</i></button></td>
             </tr>
             </tbody>
         </table>

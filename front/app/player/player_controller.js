@@ -46,6 +46,5 @@ rune.controller('PlayerController',
                     console.log(response);
                 })
         };
-
     }]
 );

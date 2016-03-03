@@ -45,6 +45,9 @@
                 <li class="no-padding">
                     <a href="#" ng-click="runemanager=true">Rune Manager</a>
                 </li>
+                <li class="no-padding">
+                    <a href="#" ng-click="runemanager=true">Parameters</a>
+                </li>
             </ul>
 
             <div class="row">
@@ -53,6 +56,12 @@
                 </div>
                 <div class="center">
                     <h3>RuneAudio</h3>
+                </div>
+
+                <!--select rune-->
+                <div class="row">
+                    <select class="col s4 offset-s4" ng-model="rune_select" material-select ng-options="rune.label for rune in runes">
+                    </select>
                 </div>
             </div>
         </header>
