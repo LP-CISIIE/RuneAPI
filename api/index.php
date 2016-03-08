@@ -74,27 +74,22 @@ if($config){
         networkController::setNetwork($net,$app);
     })->name('setNetwork');
 
-    $app->post('/runeInfo', function() use ($app){
+    $app->post('/runes', function() use ($app){
         $data = $app->request->getBody();
-        $data2 = json_decode($data);
-        $rune = array(
-            "ip" => $data2->ip,
-            "label" => $data2->label
-        );
-        postRuneInfo($rune);
+        postRunes($data);
     });
 
-    $app->get('/runeInfo', function() use ($app){
+    $app->get('/runes', function() use ($app){
         header("Content-Type: application/json");
-        if(file_exists('runeInfo.json')){
+        if(file_exists('runes.json')){
             $app->response->setStatus(200);
-            $runeInfo = file_get_contents('runeInfo.json');
-            echo $runeInfo;
+            $runes = file_get_contents('runes.json');
+            echo $runes;
         }else{
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
-                "Object" => "runeInfo",
+                "Object" => "runes",
                 "message" => "There is no information to display"
             ));
         }
@@ -105,28 +100,17 @@ if($config){
 
 
 //fonction d'ecriture dans le fichier runeInfo
-function postRuneInfo($rune)
+function postRunes($runesArray)
 {
-    $file = fopen("runeInfo.json", "w+");
-
-    // if file is not empty
-    if ($file && filesize("runeInfo.json") != 0) {
-
-        $data = fread($file, filesize("runeInfo.json"));
-        $decode = json_decode($data);
-        // on efface le contenu existant
-        $ecrire = fopen('runeInfo.json', "w");
-        ftruncate($ecrire, 0);
-    }else{
-        // if file is empty
-        $decode = (object)array('runeInfo' => array());
+    // open and delete content
+    $file = fopen("runes.json", "w+");
+    // write array to file
+    $obj = (object) array('runes' => array());
+    foreach(json_decode($runesArray) as $rune){
+        array_push($obj->runes, $rune);
     }
 
-    //creation du json a ecrire
-    array_push($decode->runeInfo, $rune);
-    echo(json_encode($decode));
-    //re encodage en json et ajout dans le fichier
-    $str = json_encode($decode);
-    fputs($file, $str);
+    echo json_encode($obj);
+    fputs($file, json_encode($obj));
     fclose($file);
 }

@@ -8,6 +8,7 @@
             <tr>
                 <th data-field="id">Runes</th>
                 <th data-field="name">IP</th>
+                <th data-field="name">Delete</th>
                 <th data-field="name">Select</th>
             </tr>
             </thead>
@@ -15,7 +16,8 @@
             <tr ng-repeat="rune in runes | orderBy: 'rune.label' ">
                 <td>{{ rune.label }}</td>
                 <td>{{ rune.ip }}</td>
-                <td><button class="btn" ng-model="rune">Selectionner</button></td>
+                <td><button class="btn-floating btn-large waves-effect waves-light red" ng-model="delRune" ng-value="delRune.ip = '{{ rune.ip }}'" ng-click="delete_rune(delRune)"><i class="material-icons">delete</i></button></td>
+                <td><button class="btn" ng-model="rune" ng-click="select_rune(rune)">Selectionner</button></td>
             </tr>
             </tbody>
         </table>

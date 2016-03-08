@@ -5,5 +5,12 @@ var rune = angular.module('rune', ['ui.materialize']).config(function($sceProvid
 });
 
 $(function(){
-    $("#iframe").contents().find("span").hide();
+    //$("#iframe").contents().find("span").hide();
+
+});
+$(function(){
+    var f=$('#iframe');
+    f.load(function(){
+        f.contents().find('div').hide();
+    });
 });
