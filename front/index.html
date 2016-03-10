@@ -72,15 +72,15 @@
         </header>
 
         <div class="row" ng-controller="PlayerController">
-            <player ng-show="show_player" />
+            <player ng-hide="lol" />
         </div>
 
         <div class="row" ng-controller="RuneController">
-            <runemanager ng-show="show_manager"/>
+            <runemanager ng-hide="lol"/>
         </div>
 
         <div class="row" ng-controller="SettingsController">
-            <settings ng-show="show_settings"/>
+            <settings ng-show="lol"/>
         </div>
     </div>
 </body>
