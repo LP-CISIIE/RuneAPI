@@ -13,6 +13,7 @@
         <div class="input-field col s6">
             <input id="airplay_name" ng-model="airplay.name" type="text" class="validate">
             <label for="airplay_name">Airplay Name</label>
+            <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="airplay_name()"><i class="material-icons">edit</i></button>
         </div>
     </div>
 
@@ -28,13 +29,14 @@
             </label>
         </div>
         <div class="input-field col s6">
-            <input id="spotify_name" ng-model="spotify.name" type="text" class="validate">
+            <input id="spotify_name" ng-model="spotify.username" type="text" class="validate">
             <label for="spotify_name">Spotify User Name</label>
         </div>
         <div class="input-field col s6">
             <input id="spotify_password" ng-model="spotify.password" type="password" class="validate">
             <label for="spotify_password">Password</label>
         </div>
+        <div><button class="btn waves-effect waves-light" ng-model="spotify" ng-click="spotify_account()"><i class="material-icons">edit</i></button></div>
     </div>
 
     <div class="row">
@@ -43,14 +45,15 @@
             <label><strong>UPnP / DLNA</strong></label>
             <label>
                 Off
-                <input type="checkbox" ng-model="upnp_.nable" ng-click="upnp_enable()">
+                <input type="checkbox" ng-model="upnp.enable" ng-click="upnp_enable()">
                 <span class="lever"></span>
                 On
             </label>
         </div>
         <div class="input-field col s6">
             <input id="upnp_name" ng-model="upnp.name" type="text" class="validate">
-            <label for="upnp_name">Airplay Name</label>
+            <label for="upnp_name">UPnP / DLNA name</label>
+            <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="upnp_name()"><i class="material-icons">edit</i></button>
         </div>
     </div>
 
@@ -82,18 +85,21 @@
             <label><strong>Last.fm</strong></label>
             <label>
                 Off
-                <input type="checkbox" ng-model="lastFM.enable" ng-click="lastFM_enable()">
+                <input type="checkbox" ng-model="lastfm.enable" ng-click="lastfm_enable()">
                 <span class="lever"></span>
                 On
             </label>
         </div>
         <div class="input-field col s6">
-            <input id="lastfm_name" ng-model="lastfm.name" type="text" class="validate">
+            <input id="lastfm_name" ng-model="lastfm.username" type="text" class="validate">
             <label for="lastfm_name">Last.fm User Name</label>
         </div>
         <div class="input-field col s6">
             <input id="lastfm_password" ng-model="lastfm.password" type="password" class="validate">
             <label for="lastfm_password">Password</label>
+        </div>
+        <div>
+            <button class="btn waves-effect waves-light" ng-model="lastfm" ng-click="lastfm_account()"><i class="material-icons">edit</i></button>
         </div>
     </div>
 </div>
