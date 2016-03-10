@@ -27,6 +27,10 @@
     <script src="app/rune/rune_current.js"></script>
     <script src="app/rune/rune_directive.js"></script>
 
+    <script src="app/player/settings.js"></script>
+    <script src="app/player/settings_controller.js"></script>
+    <script src="app/player/settings_directive.js"></script>
+
     <script src="lib/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -72,6 +76,10 @@
 
         <div class="row" ng-controller="RuneController">
             <runemanager ng-show="runemanager"/>
+        </div>
+
+        <div class="row" ng-controller="SettingsController">
+            <settings ng-show="settings"/>
         </div>
     </div>
 </body>

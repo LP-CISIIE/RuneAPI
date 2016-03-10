@@ -60,4 +60,55 @@ class settingsController
         );
         echo json_encode($obj);
     }
+
+    public static function settingsUpdate($app)
+    {
+//        $app->response->headers->set('Content-Type', 'application/json');
+
+        $data = array(
+            "features[airplay][enable]" => "1",
+            "features[airplay][name]" => "555555555",
+            "features[spotify][enable]" => "1",
+            "features[spotify][user]" => "dqfz",
+            "features[spotify][pass]" => "8968",
+            "features[dlna][enable]" => "1",
+            "features[dlna][name]" => "8758",
+            "features[udevil]"  => "1",
+            "features[coverart]" => "1",
+            "features[lastfm][enable]" => "1",
+            "features[lastfm][user]" => "ujhgfd",
+            "features[lastfm][pass]" => "4444",
+            "features[submit]" => "1"
+        );
+
+        $opts = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => http_build_query($data)
+            )
+        );
+
+        $context  = stream_context_create($opts);
+        $result = file_get_contents($app->rootUri . "/settings/", false, $context);
+
+        if ($result === FALSE) { /* Handle error */ }
+        var_dump($result);
+//        $response = trim($html);
+//        if($response == 'OK'){
+//            $app->response->setStatus(200);
+//            echo json_encode(array(
+//                "HTTP" => 200,
+//                "Object" => "volume",
+//                "message" => "Done"
+//            ));
+//        }else{
+//            $app->response->setStatus(500);
+//            echo json_encode(array(
+//                "HTTP" => 500,
+//                "Object" => "volume",
+//                "message" => $html
+//            ));
+//        }
+    }
 }

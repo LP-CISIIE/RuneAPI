@@ -42,6 +42,10 @@ if($config){
         settingsController::settings($app);
     })->name('annoncesId');
 
+    $app->put('/settings', function() use ($app) {
+        settingsController::settingsUpdate($app);
+    })->name('annoncesId');
+
     $app->get('/player/:action', function($action) use ($app) {
         playerController::player($app, $action);
     })->name('player');
