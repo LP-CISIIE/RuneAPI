@@ -64,21 +64,23 @@ class settingsController
     public static function settingsUpdate($app)
     {
 //        $app->response->headers->set('Content-Type', 'application/json');
+        $data = json_decode($app->request->getBody());
+        var_dump($data);
 
         $data = array(
-            "features[airplay][enable]" => "1",
-            "features[airplay][name]" => "555555555",
-            "features[spotify][enable]" => "1",
-            "features[spotify][user]" => "dqfz",
-            "features[spotify][pass]" => "8968",
-            "features[dlna][enable]" => "1",
-            "features[dlna][name]" => "8758",
-            "features[udevil]"  => "1",
-            "features[coverart]" => "1",
-            "features[lastfm][enable]" => "1",
-            "features[lastfm][user]" => "ujhgfd",
-            "features[lastfm][pass]" => "4444",
-            "features[submit]" => "1"
+            "features[airplay][enable]" => (empty($data->airplay)) ? 'défaut' : $data->airplay,
+            "features[airplay][name]" => (empty($data->airplay_name)) ? null : $data->airplay_name,
+            "features[spotify][enable]" => (empty($data->spotify)) ? 'défaut' : $data->spotify,
+            "features[spotify][user]" => (empty($data->spotify_user)) ? null : $data->spotify_user,
+            "features[spotify][pass]" => (empty($data->spotify_pass)) ? null : $data->spotify_pass,
+            "features[dlna][enable]" => (empty($data->dlna)) ? 'défaut' : $data->dlna,
+            "features[dlna][name]" => (empty($data->dlna_name)) ? null : $data->dlna_name,
+            "features[udevil]"  => (empty($data->udevil)) ? 'défaut' : $data->udevil,
+            "features[coverart]" => (empty($data->coverart)) ? 'défaut' : $data->coverart,
+            "features[lastfm][enable]" => (empty($data->lastfm)) ? 'défaut' : $data->lastfm,
+            "features[lastfm][user]" => (empty($data->lastfm_user)) ? null : $data->lastfm_user,
+            "features[lastfm][pass]" => (empty($data->lastfm_pass)) ? null : $data->lastfm_pass,
+//            "features[submit]" => "1"
         );
 
         $opts = array('http' =>
@@ -91,9 +93,9 @@ class settingsController
 
         $context  = stream_context_create($opts);
         $result = file_get_contents($app->rootUri . "/settings/", false, $context);
-
-        if ($result === FALSE) { /* Handle error */ }
-        var_dump($result);
+//
+//        if ($result === FALSE) { /* Handle error */ }
+//        var_dump($result);
 //        $response = trim($html);
 //        if($response == 'OK'){
 //            $app->response->setStatus(200);

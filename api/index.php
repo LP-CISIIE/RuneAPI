@@ -11,6 +11,7 @@ use api\controller\gestionController;
 use api\controller\testController;
 use api\controller\mdpController;
 use api\controller\networkController;
+use api\controller\runeController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -78,43 +79,14 @@ if($config){
         networkController::setNetwork($net,$app);
     })->name('setNetwork');
 
-    $app->post('/runes', function() use ($app){
-        $data = $app->request->getBody();
-        postRunes($data);
+    $app->get('/runes', function() use ($app){
+        runeController::runes($app);
     });
 
-    $app->get('/runes', function() use ($app){
-        header("Content-Type: application/json");
-        if(file_exists('runes.json')){
-            $app->response->setStatus(200);
-            $runes = file_get_contents('runes.json');
-            echo $runes;
-        }else{
-            $app->response->setStatus(200);
-            echo json_encode(array(
-                "HTTP" => 200,
-                "Object" => "runes",
-                "message" => "There is no information to display"
-            ));
-        }
+    $app->put('/runes', function() use ($app){
+        runeController::runesUpdate($app);
     });
+
 
     $app->run();
-}
-
-
-//fonction d'ecriture dans le fichier runeInfo
-function postRunes($runesArray)
-{
-    // open and delete content
-    $file = fopen("runes.json", "w+");
-    // write array to file
-    $obj = (object) array('runes' => array());
-    foreach(json_decode($runesArray) as $rune){
-        array_push($obj->runes, $rune);
-    }
-
-    echo json_encode($obj);
-    fputs($file, json_encode($obj));
-    fclose($file);
 }
