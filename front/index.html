@@ -27,9 +27,9 @@
     <script src="app/rune/rune_current.js"></script>
     <script src="app/rune/rune_directive.js"></script>
 
-    <script src="app/player/settings.js"></script>
-    <script src="app/player/settings_controller.js"></script>
-    <script src="app/player/settings_directive.js"></script>
+    <script src="app/settings/settings.js"></script>
+    <script src="app/settings/settings_controller.js"></script>
+    <script src="app/settings/settings_directive.js"></script>
 
     <script src="lib/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
@@ -44,13 +44,13 @@
             <!--sidebar-->
             <ul id="sidebar" class="side-nav" style="width: 240px; left: 0px;">
                 <li class="no-padding">
-                    <a href="#" ng-click="runemanager=false">Player</a>
+                    <a href="#" ng-click="show=1; console.log(show)">Player</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="runemanager=true">Rune Manager</a>
+                    <a href="#" ng-click="show=2">Rune Manager</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="runemanager=true">Parameters</a>
+                    <a href="#" ng-click="show=3">Parameters</a>
                 </li>
             </ul>
 
@@ -71,15 +71,15 @@
         </header>
 
         <div class="row" ng-controller="PlayerController">
-            <player ng-hide="runemanager" />
+            <player ng-show="show_player" />
         </div>
 
         <div class="row" ng-controller="RuneController">
-            <runemanager ng-show="runemanager"/>
+            <runemanager ng-show="show_manager"/>
         </div>
 
         <div class="row" ng-controller="SettingsController">
-            <settings ng-show="settings"/>
+            <settings ng-show="show_settings"/>
         </div>
     </div>
 </body>
