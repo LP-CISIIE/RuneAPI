@@ -35,9 +35,33 @@ class playlistController
             case 'soundRepeatOff' :
                 self::soundRepeatOff($app);
                 break;
+            case 'filepath' :
+                self::getFilePath($app);
+                break;
             default:
                 echo "It works";
                 break;
+        }
+    }
+
+    public static function getFilePath($app){
+        $html = file_get_contents($app->rootUri . "/db/?cmd=filepath");
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "get file path",
+                "message" => $reponse
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "get file path",
+                "message" => $html
+            ));
         }
     }
 
