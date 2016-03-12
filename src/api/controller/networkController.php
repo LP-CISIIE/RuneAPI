@@ -8,7 +8,7 @@
 			$app->response->headers->set('Content-Type', 'application/json');
 		        
 	        // l'url du html à récupérer
-	        $html = file_get_contents($app->rootUri . "/network/");
+	        $html = file_get_contents($app->rootUri . "network/");
 	        // on créé un élément DOM
 	        $dom = new \DOMDocument();
 	        // on rempli le DOM avec le HTML précèdemment récupéré
@@ -24,9 +24,9 @@
 		        $i = 0;
 		        $tmp = null;
 		        while($i < $objDom->length){
-		        	$network = explode(" ", trim(str_replace(" " 	,"",$objDom[$i]->textContent)));
-			        $tmp[$i]["nom"] = $network[0];			     
-			        $tmp[$i]["adresse"] = $network[1];			       
+		        	$network = explode("[", trim(str_replace(" " 	,"",$objDom[$i]->textContent)));
+			        $tmp[$i]["nom"] = str_replace("]", "", $network[0]);			     
+			        $tmp[$i]["adresse"] = str_replace("]", "", $network[1]);			       
 		        	$i++;
 		        }
 		        return $tmp;
@@ -48,7 +48,7 @@
 			$app->response->headers->set('Content-Type', 'application/json');
 		        
 	        // l'url du html à récupérer
-	        $html = file_get_contents($app->rootUri . "/network/edit/".$network);
+	        $html = file_get_contents($app->rootUri . "network/edit/".$network);
 	        // on créé un élément DOM
 	        $dom = new \DOMDocument();
 	        // on rempli le DOM avec le HTML précèdemment récupéré

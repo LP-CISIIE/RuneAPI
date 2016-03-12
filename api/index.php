@@ -12,6 +12,7 @@ use api\controller\testController;
 use api\controller\mdpController;
 use api\controller\networkController;
 use api\controller\runeController;
+use api\controller\debugController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -85,6 +86,10 @@ if($config){
 
     $app->put('/runes', function() use ($app){
         runeController::runesUpdate($app);
+    });
+
+    $app->get('/debug', function() use ($app){
+        debugController::getLog($app);
     });
 
 
