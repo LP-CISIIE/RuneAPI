@@ -1,7 +1,8 @@
 <?php
 	namespace api\controller;
 
-	class mdpController{
+	class mdpController
+	{
 		public static function getMpd($app){
 			$app->response->headers->set('Content-Type', 'application/json');
 	        
@@ -100,46 +101,40 @@
             echo json_encode(array(
                 "HTTP" => 200,
                 "message" => $tab
-            ));	       
+            ));
 		}
 
-		public function setOutput($app, $output){
-			$url = $app->rootUri . "mpd/";
-			if($output == "analogique"){
-				$out = "bcm2835 ALSA_1";
-			}else if($output == "hdmi"){
-				$out = "bcm2835 ALSA_2";
-			}else{
-				$out = "error";
-			}
+		public function setOutput($app){
+			$data = json_decode($app->request->getBody());
+	        $postdata = http_build_query(
+			    array(
+			        "conf[mixer_type]" => $data->mixer_type,
+		            "conf[user]" => $data->user,
+		            "conf[log_level]" => $data->log_level,
+		            "conf[state_file]" => $data->state_file,
+		            "conf[ffmpeg]" => $data->ffmpeg,
+		            "conf[gapless_mp3_playback]" => $data->gapless_mp3_playback,
+		            "conf[dsd_usb]" => $data->dsd_usb,
+		            "conf[volume_normalization]"  => $data->volume_normalization,
+		            "conf[audio_buffer_size]" => $data->audio_buffer_size,
+		            "conf[buffer_before_play]" => $data->buffer_before_play,
+		            "conf[auto_update]" => $data->auto_update,
+	            	"save" => "save"
+			    )
+			);
 
-			if($out != "error"){
-				$data = array('ao' => $out);
-				$options = array(
-					        'http' => array(
-					        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-					        'method'  => 'POST',
-					        'content' => http_build_query($data),
-				   		)
-				);
+	        $opts = array('http' =>
+	            array(
+	                'method'  => 'POST',
+	                'header'  => 'Content-type: application/x-www-form-urlencoded',
+	                'content' => $postdata
+	            )
+	        );
 
-				$context  = stream_context_create($options);
-				$result = file_get_contents($url, false, $context);
+	        $context  = stream_context_create($opts);
 
-				$app->response->setStatus(200);
-	            echo json_encode(array(
-	                "HTTP" => 200,
-	                "Object" => "Output",
-	                "message" => "Done"
-	            ));
-			}else{
-				$app->response->setStatus(500);
-	            echo json_encode(array(
-	                "HTTP" => 500,
-	                "Object" => "Output",
-	                "message" => "Wrong url"
-	            ));
-			}
+        	$result = file_get_contents($app->rootUri . "mpd/", false, $context);
+	        var_dump($result);
 		}
 	}
 ?>

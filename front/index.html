@@ -34,6 +34,9 @@
     <script src="app/settings/settings_controller.js"></script>
     <script src="app/settings/settings_directive.js"></script>
 
+    <script src="app/mpd/mpd_controller.js"></script>
+    <script src="app/mpd/mpd_directive.js"></script>
+
     <script src="lib/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -47,14 +50,17 @@
             <!--sidebar-->
             <ul id="sidebar" class="side-nav" style="width: 240px; left: 0px;">
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=true;show_manager=false;show_settings=false;">Player</a>
+                    <a href="#" ng-click="show_player=true;show_manager=false;show_settings=false;show_mpd=false;">Player</a>
 
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_manager=true;show_settings=false;">Rune Manager</a>
+                    <a href="#" ng-click="show_player=false;show_manager=true;show_settings=false;show_mpd=false;">Rune Manager</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_manager=false;show_settings=true;">Parameters</a>
+                    <a href="#" ng-click="show_player=false;show_manager=false;show_settings=true;show_mpd=false;">Parameters</a>
+                </li>
+                <li class="no-padding">
+                    <a href="#" ng-click="show_player=false;show_manager=false;show_settings=false;show_mpd=true;">Mpd</a>
                 </li>
             </ul>
 
@@ -90,6 +96,10 @@
 
         <div class="row" ng-controller="SettingsController">
             <settings />
+        </div>
+
+        <div class="row" ng-controller="MpdController">
+            <mpd />
         </div>
     </div>
 </body>
