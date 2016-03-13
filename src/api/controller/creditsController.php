@@ -16,32 +16,33 @@
 	    $xpath = new \DOMXpath($dom);
 	    $tab= array();
 
-	   	$tables = $dom->getElementsByTagName("container credits");
-	   	
 
-	   
- 
-		$i = 0;
- 
-			while($table = $tables->item($i++))
-			{
-			    foreach($table->attributes as $attr)
-			    {
-			        var_dump( $attr->name . " " . $attr->value . "<br />" );
-			    }
-			}
+	    $tab["team"]=array();
+	    $names = $xpath->query("//strong");
+	    $spans = $xpath->query("//span");
 
 
-		/*
+	    for ($i=0; $i < 8 ; $i++) { 
+	    	
+	    	array_push($tab["team"],array(
+	    		str_replace(",","", $names->item($i+1)->nodeValue),
+	    		str_replace(",","", $spans->item($i)->nodeValue))
+	    	);
+	    }
+	    
+
+	    
+
+		
 
 		$app->response->setStatus(200);
 	            echo json_encode(array(
 	                "HTTP" => 200,
 	                "Object" => "credits",
 	                "message" => "Done",
-	                "credits" => $c
+	                "credits" => json_encode($tab["team"])
 	            ));
-*/
+		
 		
 
 
