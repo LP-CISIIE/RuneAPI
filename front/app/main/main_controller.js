@@ -11,8 +11,8 @@ rune.controller('MainController',
         $scope.show_settings = false;
 
         $rootScope.runes =[];
-        $scope.rune_select = $rootScope.runes;
-
+        $scope.rune_select = $rootScope.rune;
+        
      $scope.change_rune = function(rune) {
         console.log("CHANGEMENT DE RUNE");
         console.log(rune);
