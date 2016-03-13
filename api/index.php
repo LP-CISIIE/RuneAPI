@@ -36,9 +36,9 @@ if($config){
 		mdpController::getMpd($app);
 	})->name('mpd');
 
-	$app->put('/mpd/:output', function($output) use ($app) {
-		mdpController::setOutput($app, $output);
-	})->name('setOutput');
+    $app->post('/mpd', function() use ($app) {
+       mdpController::setOutput($app);
+    })->name('setOutput');
 
     $app->get('/settings', function() use ($app) {
         settingsController::settings($app);
