@@ -64,23 +64,24 @@
                 </div>
 
                 <!--select rune-->
-                <div class="row">
-                    <select class="col s4 offset-s4" ng-model="rune_select" material-select ng-options="rune.label for rune in runes">
-                    </select>
-                </div>
+
+                <select class="browser-default" ng-model="rune_select">
+                    <option ng-repeat="ru in runes"> {{ru.label}}</option>
+                </select>
+
             </div>
         </header>
 
         <div class="row" ng-controller="PlayerController">
-            <player ng-hide="lol" />
+            <player />
         </div>
 
         <div class="row" ng-controller="RuneController">
-            <runemanager ng-hide="lol"/>
+            <runemanager />
         </div>
 
         <div class="row" ng-controller="SettingsController">
-            <settings ng-show="lol"/>
+            <settings />
         </div>
     </div>
 </body>

@@ -10,10 +10,16 @@ rune.controller('MainController',
         $scope.show_manager = false;
         $scope.show_settings = false;
 
-        console.log($rootScope.runes);
+        $rootScope.runes =[];
+        $scope.rune_select = $rootScope.runes;
+
+/*
+        console.log($rootScope.runes); // :/
         $scope.$watch('$rootScope.rune', function () {
             $scope.runes = $rootScope.runes;
             $scope.rune_select = $scope.runes[0];
         });
+
+*/
 
     }]);

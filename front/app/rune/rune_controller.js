@@ -4,7 +4,7 @@
 rune.controller('RuneController',
     ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', function($scope, $http, $rootScope, runeCurrent, Rune){
 
-        $rootScope.runes = [];
+        
         $scope.runes = $rootScope.runes;
         $scope.$watch('runeCurrent.rune', function (newValue) {
             if (newValue != 0 && newValue != undefined) {
@@ -30,6 +30,7 @@ rune.controller('RuneController',
                 .then(function(response){
                     console.log(response);
                 })
+
         };
 
         $scope.runeDelete = function(ip){

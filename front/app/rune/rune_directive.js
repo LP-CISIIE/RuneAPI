@@ -10,6 +10,11 @@ rune.directive('runemanager', ['$rootScope', 'Rune', 'runeCurrent', function($ro
                 console.log(addRune);
                 scope.runes.push(new Rune(addRune));
                 scope.runePush();
+
+                $rootScope.runes = scope.runes;
+
+                scope.addRune.label = "";
+                scope.addRune.ip = "";
             };
             scope.delete_rune = function(delRune){
                 scope.runeDelete(delRune);
