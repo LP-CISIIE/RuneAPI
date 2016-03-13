@@ -13,6 +13,10 @@ rune.controller('MainController',
         $rootScope.runes =[];
         $scope.rune_select = $rootScope.runes;
 
+     $scope.change_rune = function(rune) {
+        console.log("CHANGEMENT DE RUNE");
+        console.log(rune);
+     }
 /*
         console.log($rootScope.runes); // :/
         $scope.$watch('$rootScope.rune', function () {

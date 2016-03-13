@@ -65,9 +65,11 @@
 
                 <!--select rune-->
 
-                <select class="browser-default" ng-model="rune_select">
-                    <option ng-repeat="ru in runes"> {{ru.label}}</option>
+                <select class="browser-default" ng-change="change_rune(ru)" ng-model="ru">
+                    <option ng-repeat="ru in runes"> {{ru.label}} </option>
                 </select>
+
+                
 
             </div>
         </header>
