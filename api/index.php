@@ -14,6 +14,7 @@ use api\controller\networkController;
 use api\controller\runeController;
 use api\controller\debugController;
 use api\controller\creditsController;
+// use api\controller\infosController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -28,7 +29,11 @@ if($config){
         echo "ça marche";
     });
 
-
+    /*
+    $app->get('/infos', function() use ($app) {
+        infosController::musique($app);
+    })->name('musique');
+    */
     $app->get('/credits', function() use ($app) {
         creditsController::credits($app);
     })->name('credits');
