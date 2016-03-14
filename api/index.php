@@ -81,6 +81,10 @@ if($config){
         sourcesController::AddSource($app);
     })->name('addSource');
 
+    $app->post('/sources/delete', function() use ($app) {
+        sourcesController::DeleteSource($app);
+    })->name('deleteSource');
+
     $app->get('/test', function() use ($app) {
         testController::test($app);
     })->name('test');

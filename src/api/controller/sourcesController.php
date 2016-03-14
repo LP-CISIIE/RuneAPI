@@ -64,9 +64,30 @@ class sourcesController
         echo json_encode($obj);
     }
 
+    public function DeleteSource($app){
+        $data = json_decode($app->request->getBody());
+        $postdata = http_build_query(
+            array(
+                "action" => "delete",
+                "mount[id]" => $data->id
+            )
+        );
+
+        $opts = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
+
+        $context  = stream_context_create($opts);
+
+        $result = file_get_contents($app->rootUri . "sources/", false, $context);
+    }
+
     public static function AddSource($app){
             $data = json_decode($app->request->getBody());
-            var_dump($data);
             $postdata = http_build_query(
                 array(
                     "mount[name]" => $data->name,
