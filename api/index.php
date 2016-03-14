@@ -14,6 +14,7 @@ use api\controller\networkController;
 use api\controller\runeController;
 use api\controller\debugController;
 use api\controller\creditsController;
+// use api\controller\infosController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -28,7 +29,11 @@ if($config){
         echo "ça marche";
     });
 
-
+    /*
+    $app->get('/infos', function() use ($app) {
+        infosController::musique($app);
+    })->name('musique');
+    */
     $app->get('/credits', function() use ($app) {
         creditsController::credits($app);
     })->name('credits');
@@ -81,8 +86,12 @@ if($config){
         networkController::getNetwork($app);
     })->name('network');
 
+    $app->post('/network', function() use ($app) {
+        networkController::setNetwork($app);
+    })->name('ModifNetwork');
+
     $app->get('/network/edit/:net', function($net) use ($app) {
-        networkController::setNetwork($net,$app);
+        networkController::ChooseNetwork($net,$app);
     })->name('setNetwork');
 
     $app->get('/runes', function() use ($app){
