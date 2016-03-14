@@ -64,5 +64,40 @@ class sourcesController
         echo json_encode($obj);
     }
 
+    public static function AddSource($app){
+            $data = json_decode($app->request->getBody());
+            var_dump($data);
+            $postdata = http_build_query(
+                array(
+                    "mount[name]" => $data->name,
+                    "mount[id]" => $data->id,
+                    "action" => "add",
+                    "mount[type]" => $data->type,
+                    "mount[address]" => $data->address,
+                    "mount[remotedir]" => $data->remotedir,
+                    "nas-guest" => $data->nas,
+                    "mount[username]" => $data->username,
+                    "mount[password]" => $data->password,
+                    "mount[charset]"  => $data->charset,
+                    "mount[rsize]" => $data->rsize,
+                    "mount[wsize]" => $data->wsize,
+                    "mount[options]" => $data->options,
+                    "mount[error]" => $data->error,
+                    "save" => "save"
+                )
+            );
+
+            $opts = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
+
+            $context  = stream_context_create($opts);
+
+            $result = file_get_contents($app->rootUri . "sources/", false, $context);
+        }
 
 }

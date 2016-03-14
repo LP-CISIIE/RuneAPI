@@ -28,7 +28,6 @@ if($config){
     $app->get('/', function() use ($app, $config) {
         echo "ça marche";
     });
-
     /*
     $app->get('/infos', function() use ($app) {
         infosController::musique($app);
@@ -77,6 +76,10 @@ if($config){
     $app->put('/sources', function() use ($app) {
         sourcesController::rebuild($app);
     })->name('rebuild');
+
+    $app->post('/sources/add', function() use ($app) {
+        sourcesController::AddSource($app);
+    })->name('addSource');
 
     $app->get('/test', function() use ($app) {
         testController::test($app);
