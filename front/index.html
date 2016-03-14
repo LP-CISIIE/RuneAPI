@@ -54,7 +54,6 @@
             <ul id="sidebar" class="side-nav" style="width: 240px; left: 0px;">
                 <li class="no-padding">
                     <a href="#" ng-click="show_player=true;show_manager=false;show_settings=false;show_mpd=false;show_credits=false">Player</a>
-
                 </li>
                 <li class="no-padding">
                     <a href="#" ng-click="show_player=false;show_manager=true;show_settings=false;show_mpd=false;show_credits=false">Rune Manager</a>
@@ -65,8 +64,7 @@
                 <li class="no-padding">
                     <a href="#" ng-click="show_player=false;show_manager=false;show_settings=false;show_mpd=true;show_credits=false">Mpd</a>
                 </li>
-
-                 <li class="no-padding">
+                <li class="no-padding">
                     <a href="#" ng-click="show_player=false;show_manager=false;show_settings=false;show_mpd=false;show_credits=true;">Crédits</a>
                 </li>
             </ul>
@@ -79,38 +77,33 @@
                     <h3>RuneAudio</h3>
                 </div>
 
-
-
                 <!--select rune-->
-
-                <select class="browser-default" ng-change="change_rune(run)" ng-model="run">
-                 
-                    <option  ng-repeat="run in runes">  {{run.label}}</option>
-                </select>
-
-                
-
+                <div class="col s4 offset-s4" ng-show="show_player">
+                    <select class="" ng-change="change_rune(run)" ng-model="run" material-select watch>
+                        <option  ng-repeat="run in runes">  {{run.label}}</option>
+                    </select>
+                </div>
             </div>
         </header>
 
         <div class="row" ng-controller="PlayerController">
-            <player />
+            <player ng-show="show_player" />
         </div>
 
         <div class="row" ng-controller="RuneController">
-            <runemanager />
+            <runemanager ng-show="show_manager" />
         </div>
 
         <div class="row" ng-controller="SettingsController">
-            <settings />
+            <settings ng-show="show_settings" />
         </div>
 
         <div class="row" ng-controller="MpdController">
-            <mpd />
+            <mpd ng-show="show_mpd" />
         </div>
 
         <div class="row" ng-controller="CreditsController">
-            <credits />
+            <credits ng-show="show_credits"  />
         </div>
     </div>
 </body>

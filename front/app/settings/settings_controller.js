@@ -122,7 +122,26 @@ rune.controller('SettingsController',
                 });
         };
 
+        $scope.get_settings = function (){
+            $http.get($rootScope.root + '/api/settings')
+                .then(function(response){
+                    console.log(response.data.settings.features);
+                    features = response.data.settings.features;
+                    $scope.airplay.enable = features.airplay == 1 ? true : false;
+                    $scope.airplay.name = features.airplay_name;
+                    $scope.spotify.enable = features.spotify == 1 ? true : false;
+                    $scope.spotify.username = features.spotify_username;
+                    $scope.spotify.password = features.spotify_password;
+                    $scope.upnp.enable = features.upnp_dlna == 1 ? true : false;
+                    $scope.upnp.name = features.upnp_dlna_name;
+                    $scope.usb.enable = false;
+                    $scope.album.enable = false;
+                    $scope.lastfm.enable = features.lastfm == 1 ? true : false;
+                    $scope.lastfm.username = features.lastfm_username;
+                    $scope.lastfm.password = features.lastfm_password;
+                });
+        };
 
-
+        $scope.get_settings();
     }]
 );

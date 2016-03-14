@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <!-- Airplay -->
-        <div class="switch">
+        <div class="switch col s2">
             <label><strong>Airplay</strong></label>
             <label>
                 Off
@@ -10,16 +10,18 @@
                 On
             </label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4 offset-s4">
             <input id="airplay_name" ng-model="airplay.name" type="text" class="validate">
             <label for="airplay_name">Airplay Name</label>
+        </div>
+        <div>
             <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="airplay_name()"><i class="material-icons">edit</i></button>
         </div>
     </div>
 
     <div class="row">
         <!-- Spotify -->
-        <div class="switch">
+        <div class="switch col s2">
             <label><strong>Spotify</strong></label>
             <label>
                 Off
@@ -28,11 +30,11 @@
                 On
             </label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
             <input id="spotify_name" ng-model="spotify.username" type="text" class="validate">
             <label for="spotify_name">Spotify User Name</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
             <input id="spotify_password" ng-model="spotify.password" type="password" class="validate">
             <label for="spotify_password">Password</label>
         </div>
@@ -41,7 +43,7 @@
 
     <div class="row">
         <!-- UPnP DLNA -->
-        <div class="switch">
+        <div class="switch col s2">
             <label><strong>UPnP / DLNA</strong></label>
             <label>
                 Off
@@ -50,16 +52,18 @@
                 On
             </label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4 offset-s4">
             <input id="upnp_name" ng-model="upnp.name" type="text" class="validate">
             <label for="upnp_name">UPnP / DLNA name</label>
+        </div>
+        <div>
             <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="upnp_name()"><i class="material-icons">edit</i></button>
         </div>
     </div>
 
     <div class="row">
         <!-- usb and album -->
-        <div class="switch">
+        <div class="switch col s3">
             <label><strong>USB Automount</strong></label>
             <label>
                 Off
@@ -68,7 +72,9 @@
                 On
             </label>
         </div>
-        <div class="switch">
+    </div>
+    <div class="row">
+        <div class="switch col s3">
             <label><strong>Display album cover</strong></label>
             <label>
                 Off
@@ -81,7 +87,7 @@
 
     <div class="row">
         <!-- FM -->
-        <div class="switch">
+        <div class="switch col s2">
             <label><strong>Last.fm</strong></label>
             <label>
                 Off
@@ -90,11 +96,11 @@
                 On
             </label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
             <input id="lastfm_name" ng-model="lastfm.username" type="text" class="validate">
             <label for="lastfm_name">Last.fm User Name</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
             <input id="lastfm_password" ng-model="lastfm.password" type="password" class="validate">
             <label for="lastfm_password">Password</label>
         </div>

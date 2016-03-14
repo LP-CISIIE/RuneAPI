@@ -5,10 +5,11 @@ rune.controller('MainController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
 
         $scope.show = 1;
-        $scope.lol = true;
-        $scope.show_player = false;
+        $scope.show_player = true;
         $scope.show_manager = false;
         $scope.show_settings = false;
+        $scope.show_credits = false;
+        $scope.show_mpd = false;
 
         $rootScope.runes =[];
         $scope.rune_select = $rootScope.rune;

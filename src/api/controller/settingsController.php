@@ -49,7 +49,7 @@ class settingsController
                     "upnp_dlna_name" => $inputs[8]->getAttribute('value'),
                     "usb_automount" => "unknown",
                     "display_album_cover" => "unknown",
-                    "last_fm" => $lastfm,
+                    "lastfm" => $lastfm,
                     "lastfm_username" => $inputs[12]->getAttribute('value'),
                     "lastfm_password" => $inputs[13]->getAttribute('value'),
                 ),
