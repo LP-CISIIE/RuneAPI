@@ -44,7 +44,7 @@
 
 		}
 
-		public static function setNetwork($network, $app){
+		public static function ChooseNetwork($network, $app){
 			$app->response->headers->set('Content-Type', 'application/json');
 		        
 	        // l'url du html à récupérer
@@ -102,6 +102,36 @@
                 "HTTP" => 200,
                 "message" => $tab
             ));
+		}
+
+		public function setNetwork($app){
+			$data = json_decode($app->request->getBody());
+
+	        $postdata = http_build_query(
+			    array(
+			        "nic[name]" => $data->name,
+		            "nic[wireless]" => $data->wireless,
+		            "nic[dhcp]" => $data->dhcp,
+		            "nic[ip]" => $data->ip,
+		            "nic[netmask]" => $data->netmask,
+		            "nic[gw]"  => $data->gw,
+		            "nic[dns1]" => $data->dns1,
+		            "nic[dns2]" => $data->dns2,
+	            	"save" => "save"
+			    )
+			);
+
+	        $opts = array('http' =>
+	            array(
+	                'method'  => 'POST',
+	                'header'  => 'Content-type: application/x-www-form-urlencoded',
+	                'content' => $postdata
+	            )
+	        );
+
+	        $context  = stream_context_create($opts);
+
+        	$result = file_get_contents($app->rootUri . "network/", false, $context);
 		}
 	}
 
