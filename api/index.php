@@ -81,8 +81,12 @@ if($config){
         networkController::getNetwork($app);
     })->name('network');
 
+    $app->post('/network', function() use ($app) {
+        networkController::setNetwork($app);
+    })->name('ModifNetwork');
+
     $app->get('/network/edit/:net', function($net) use ($app) {
-        networkController::setNetwork($net,$app);
+        networkController::ChooseNetwork($net,$app);
     })->name('setNetwork');
 
     $app->get('/runes', function() use ($app){
