@@ -36,7 +36,7 @@ class settingsController
                 ),
                 "kernel" => array(
                     "linux_kernel" => $selects[1]->find('option[selected]', 0)->value,
-                    "i2s_modules" => "unknown",
+                    "i2s_modules" => "bonjour",
                     "sound_signature" => $selects[3]->find('option[selected]', 0)->value
                 ),
                 "features" => array(

@@ -1,111 +1,150 @@
+<div class="center">
+    <h4><i>Features Management</i></h4>
+</div>
 <div class="container">
     <div class="row">
-        <!-- Airplay -->
-        <div class="switch col s2">
-            <label><strong>Airplay</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="airplay.enable" ng-click="airplay_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-        <div class="input-field col s4 offset-s4">
-            <input id="airplay_name" ng-model="airplay.name" type="text" class="validate">
-            <label for="airplay_name">Airplay Name</label>
-        </div>
-        <div>
-            <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="airplay_name()"><i class="material-icons">edit</i></button>
-        </div>
-    </div>
+        <table class="highlight striped centered responsive-table">
+            <thead>
+                <tr>
+                    <th>Switch</th>
+                    <th>Informations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Airplay -->
+                <tr>
+                    <td>
+                        <div class="switch col s2">
+                            <label><strong>Airplay</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="airplay.enable" ng-click="airplay_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s4 offset-s4">
+                            <input id="airplay_name" ng-model="airplay.name" type="text" class="validate">
+                            <label for="airplay_name">Airplay Name</label>
+                        </div>
+                        <div>
+                            <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="airplay_name()"><i class="material-icons">edit</i></button>
+                        </div>
+                    </td>
+                </tr>
 
-    <div class="row">
-        <!-- Spotify -->
-        <div class="switch col s2">
-            <label><strong>Spotify</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="spotify.enable" ng-click="spotify_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-        <div class="input-field col s4">
-            <input id="spotify_name" ng-model="spotify.username" type="text" class="validate">
-            <label for="spotify_name">Spotify User Name</label>
-        </div>
-        <div class="input-field col s4">
-            <input id="spotify_password" ng-model="spotify.password" type="password" class="validate">
-            <label for="spotify_password">Password</label>
-        </div>
-        <div><button class="btn waves-effect waves-light" ng-model="spotify" ng-click="spotify_account()"><i class="material-icons">edit</i></button></div>
-    </div>
+                <!-- Spotify -->
+                <tr>
+                    <td>
+                        <div class="switch col s2">
+                            <label><strong>Spotify</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="spotify.enable" ng-click="spotify_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s4">
+                            <input id="spotify_name" ng-model="spotify.username" type="text" class="validate">
+                            <label for="spotify_name">Spotify User Name</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="spotify_password" ng-model="spotify.password" type="password" class="validate">
+                            <label for="spotify_password">Password</label>
+                        </div>
+                        <div><button class="btn waves-effect waves-light" ng-model="spotify" ng-click="spotify_account()"><i class="material-icons">edit</i></button></div>
+                    </td>
+                </tr>
 
-    <div class="row">
-        <!-- UPnP DLNA -->
-        <div class="switch col s2">
-            <label><strong>UPnP / DLNA</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="upnp.enable" ng-click="upnp_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-        <div class="input-field col s4 offset-s4">
-            <input id="upnp_name" ng-model="upnp.name" type="text" class="validate">
-            <label for="upnp_name">UPnP / DLNA name</label>
-        </div>
-        <div>
-            <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="upnp_name()"><i class="material-icons">edit</i></button>
-        </div>
-    </div>
+                <!-- UPnP DLNA -->
+                <tr>
+                    <td>
+                        <div class="switch col s2">
+                            <label><strong>UPnP / DLNA</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="upnp.enable" ng-click="upnp_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s4 offset-s4">
+                            <input id="upnp_name" ng-model="upnp.name" type="text" class="validate">
+                            <label for="upnp_name">UPnP / DLNA name</label>
+                        </div>
+                        <div>
+                            <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="upnp_name()"><i class="material-icons">edit</i></button>
+                        </div>
+                    </td>
+                </tr>
 
-    <div class="row">
-        <!-- usb and album -->
-        <div class="switch col s3">
-            <label><strong>USB Automount</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="usb.enable" ng-click="usb_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="switch col s3">
-            <label><strong>Display album cover</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="album.enable" ng-click="album_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </div>
+                <!-- FM -->
+                <tr>
+                    <td>
+                        <div class="switch col s2">
+                            <label><strong>Last.fm</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="lastfm.enable" ng-click="lastfm_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s4">
+                            <input id="lastfm_name" ng-model="lastfm.username" type="text" class="validate">
+                            <label for="lastfm_name">Last.fm User Name</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="lastfm_password" ng-model="lastfm.password" type="password" class="validate">
+                            <label for="lastfm_password">Password</label>
+                        </div>
+                        <div>
+                            <button class="btn waves-effect waves-light" ng-model="lastfm" ng-click="lastfm_account()"><i class="material-icons">edit</i></button>
+                        </div>
+                    </td>
+                </tr>
 
-    <div class="row">
-        <!-- FM -->
-        <div class="switch col s2">
-            <label><strong>Last.fm</strong></label>
-            <label>
-                Off
-                <input type="checkbox" ng-model="lastfm.enable" ng-click="lastfm_enable()">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-        <div class="input-field col s4">
-            <input id="lastfm_name" ng-model="lastfm.username" type="text" class="validate">
-            <label for="lastfm_name">Last.fm User Name</label>
-        </div>
-        <div class="input-field col s4">
-            <input id="lastfm_password" ng-model="lastfm.password" type="password" class="validate">
-            <label for="lastfm_password">Password</label>
-        </div>
-        <div>
-            <button class="btn waves-effect waves-light" ng-model="lastfm" ng-click="lastfm_account()"><i class="material-icons">edit</i></button>
-        </div>
+                <!-- usb -->
+                <tr>
+                    <td>
+                        <div class="switch col s3">
+                            <label><strong>USB Automount</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="usb.enable" ng-click="usb_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <!-- album -->
+                <tr>
+                    <td>
+                        <div class="switch col s3">
+                            <label><strong>Display album cover</strong></label>
+                            <label>
+                                Off
+                                <input type="checkbox" ng-model="album.enable" ng-click="album_enable()">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

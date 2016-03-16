@@ -3,6 +3,30 @@
  */
 rune.controller('PlaylistController',
     ['$scope', '$http', '$scope', '$rootScope', function($scope, $http, $scope, $rootScope){
+        $scope.playlist = {};
+        $scope.playlist.repeat = false;
+        $scope.playlist.random = false;
+        $scope.playlist.sound = false;
+
+        //get playlist
+        $scope.playlist_get = function(){
+            $http.get($rootScope.root + '/api/playlist/getPlaylist')
+                .then(function(response){
+                    console.log(response);
+                })
+        };
+
+        // repeat
+        $scope.playlist_repeat = function (){
+            $obj = JSON.stringify({"playlist":$scope.playlist.repeat});
+            console.log($obj);
+            if($obj== true){
+                $scope.playlist_repeatOn();
+            }
+            else{
+                $scope.playlist_repeatOff();
+            }
+        };
 
         // repeat ON
         $scope.playlist_repeatOn = function (){
@@ -28,6 +52,17 @@ rune.controller('PlaylistController',
                 })
         };
 
+        // random
+        $scope.playlist_random = function (){
+            $obj = JSON.stringify({"playlist":$scope.playlist.random});
+            console.log($obj);
+            if($obj== true){
+                $scope.playlist_randomOn();
+            }
+            else{
+                $scope.playlist_randomOff();
+            }
+        };
         // random on
         $scope.playlist_randomOn = function (){
             $http.get($rootScope.root + '/api/playlist/randomOn')
@@ -42,6 +77,18 @@ rune.controller('PlaylistController',
                 .then(function(response){
                     console.log(response);
                 })
+        };
+
+        // sound repeat
+        $scope.playlist_soundRepeat = function (){
+            $obj = JSON.stringify({"playlist":$scope.playlist.sound});
+            console.log($obj);
+            if($obj== true){
+                $scope.playlist_soundRepeatOn();
+            }
+            else{
+                $scope.playlist_soundRepeatOff();
+            }
         };
 
         // sound repeat on

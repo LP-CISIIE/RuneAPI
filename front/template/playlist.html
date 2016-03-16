@@ -1,0 +1,54 @@
+<div class="center">
+    <h4><i>Playlist</i></h4>
+</div>
+<div class="row">
+    <div class="col l10 offset-l1">
+        <div class="switch col s3">
+            <label><strong>Replay</strong></label>
+            <label>
+                Off
+                <input type="checkbox" ng-model="playlist.repeat" ng-click="playlist_repeat()">
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+        <div class="switch col s3">
+            <label><strong>Random</strong></label>
+            <label>
+                Off
+                <input type="checkbox" ng-model="playlist.random" ng-click="playlist_random()">
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+        <div class="switch col s3">
+            <label><strong>Sound</strong></label>
+            <label>
+                Off
+                <input type="checkbox" ng-model="playlist.sound" ng-click="playlist_soundRepeat()">
+                <span class="lever"></span>
+                On
+            </label>
+        </div>
+        <table class="highlight striped centered responsive-table">
+            <thead>
+            <tr>
+                <th data-field="nombre">#</th>
+                <th data-field="titre">Titre</th>
+                <th data-field="artiste">Artiste</th>
+                <th data-field="album">Album</th>
+                <th data-field="duree">Durée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="musique in musiques | orderBy: 'musique.number' ">
+                <td>{{ musique.number }}</td>
+                <td>{{ musique.titre }}</td>
+                <td>{{ musique.artiste }}</td>
+                <td>{{ musique.album }}</td>
+                <td>{{ musique.duree }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

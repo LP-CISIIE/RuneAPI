@@ -53,7 +53,7 @@ class playlistController
             echo json_encode(array(
                 "HTTP" => 200,
                 "Object" => "get file path",
-                "message" => $reponse
+                "message" => $response
             ));
         }else{
             $app->response->setStatus(500);
