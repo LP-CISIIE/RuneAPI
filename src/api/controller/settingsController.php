@@ -2,16 +2,22 @@
 
 namespace api\controller;
 include_once("simple_html_dom.php");
+require_once('/var/www/app/libs/runeaudio.php');
+//include('/srv/http/app/config/config.php');
+ini_set('display_error', 1);
+ini_set('error_reporting', E_ALL | E_STRICT);
+
 
 class settingsController
 {
     public static function settings($app)
     {
-        function getState($state) {
+        function getState($state)
+        {
             $value = 0;
-            if($state->getAttribute('class') == "boxed-group"){
+            if ($state->getAttribute('class') == "boxed-group") {
                 $value = "1";
-            }else{
+            } else {
                 $value = '0';
             };
             return $value;
@@ -22,10 +28,10 @@ class settingsController
         $selects = $html->find('select');
         $inputs = $html->find('input');
         $boxes = $html->find('#features-management', 0);
-        $airplay = getState($boxes->find('#airplayBox', 0));
-        $spotify = getState($boxes->find('#spotifyBox', 0));
-        $dlna = getState($boxes->find('#dlnaBox', 0));
-        $lastfm = getState($boxes->find('#lastfmBox', 0));
+
+        // connect to the database
+        $redis = new \Redis();
+        $redis->pconnect('127.0.0.1');
 
         $obj = array(
             "settings" => array(
@@ -40,18 +46,18 @@ class settingsController
                     "sound_signature" => $selects[3]->find('option[selected]', 0)->value
                 ),
                 "features" => array(
-                    "airplay" => $airplay,
-                    "airplay_name" => $inputs[3]->getAttribute('value'),
-                    "spotify" => $spotify,
-                    "spotify_username" => $inputs[5]->getAttribute('value'),
-                    "spotify_password" => $inputs[6]->getAttribute('value'),
-                    "upnp_dlna" => $dlna,
-                    "upnp_dlna_name" => $inputs[8]->getAttribute('value'),
+                    "airplay" => $redis->hGet('airplay', 'enable'),
+                    "airplay_name" => $redis->hGet('airplay', 'name'),
+                    "spotify" => $redis->hGet('spotify', 'enable'),
+                    "spotify_username" => $redis->hGet('spotify', 'user'),
+                    "spotify_password" => $redis->hGet('spotify', 'pass'),
+                    "upnp_dlna" => $redis->hGet('dlna', 'enable'),
+                    "upnp_dlna_name" => $redis->hGet('dlna', 'name'),
                     "usb_automount" => "unknown",
                     "display_album_cover" => "unknown",
-                    "lastfm" => $lastfm,
-                    "lastfm_username" => $inputs[12]->getAttribute('value'),
-                    "lastfm_password" => $inputs[13]->getAttribute('value'),
+                    "lastfm" => $redis->hGet('lastfm', 'enable'),
+                    "lastfm_username" => $redis->hGet('lastfm', 'user'),
+                    "lastfm_password" => $redis->hGet('lastfm', 'pass'),
                 ),
                 "compatibility_fix" => array(
                     "cmedia_fix" => "unknown"
@@ -75,7 +81,7 @@ class settingsController
             "features[spotify][pass]" => (empty($data->spotify_pass)) ? null : $data->spotify_pass,
             "features[dlna][enable]" => (empty($data->dlna)) ? 'défaut' : $data->dlna,
             "features[dlna][name]" => (empty($data->dlna_name)) ? null : $data->dlna_name,
-            "features[udevil]"  => (empty($data->udevil)) ? 'défaut' : $data->udevil,
+            "features[udevil]" => (empty($data->udevil)) ? 'défaut' : $data->udevil,
             "features[coverart]" => (empty($data->coverart)) ? 'défaut' : $data->coverart,
             "features[lastfm][enable]" => (empty($data->lastfm)) ? 'défaut' : $data->lastfm,
             "features[lastfm][user]" => (empty($data->lastfm_user)) ? null : $data->lastfm_user,
@@ -85,32 +91,79 @@ class settingsController
 
         $opts = array('http' =>
             array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
                 'content' => http_build_query($data)
             )
         );
 
-        $context  = stream_context_create($opts);
+        $context = stream_context_create($opts);
         $result = file_get_contents($app->rootUri . "/settings/", false, $context);
-//
-//        if ($result === FALSE) { /* Handle error */ }
-//        var_dump($result);
-//        $response = trim($html);
-//        if($response == 'OK'){
-//            $app->response->setStatus(200);
-//            echo json_encode(array(
-//                "HTTP" => 200,
-//                "Object" => "volume",
-//                "message" => "Done"
-//            ));
-//        }else{
-//            $app->response->setStatus(500);
-//            echo json_encode(array(
-//                "HTTP" => 500,
-//                "Object" => "volume",
-//                "message" => $html
-//            ));
-//        }
+    }
+
+    public static function settingsTest($app)
+    {
+        $socket = openMpdSocket('/run/mpd.sock');
+//        $status = sysCmd("mpc status | grep '\[' | cut -d '[' -f 2 | cut -d ']' -f 1");
+//        $sock = openSpopSocket('127.0.0.1', '80', 1);
+//        $song = getTrackInfo($socket, '1');
+        sendMpdCommand($socket, 'playlistinfo 2');
+        $song = readMpdResponse($socket);
+        var_dump(self::parsePlaylist($song));
+
+
+//        $curTrack = getTrackInfo($socket, 2);
+//        var_dump($curTrack);
+//        ui_status($mpd, $status);
+
+    }
+
+    public static function parsePlaylist($resp)
+    {
+        if (is_null($resp)) {
+            return null;
+        } else {
+            $dirCounter=-1;
+            $plistArray = array();
+            $plistLine = strtok($resp, "\n");
+            // $plistFile = "";
+            $plCounter = -1;
+            $browseMode = TRUE;
+            while ($plistLine) {
+                if($plistLine == "OK")
+                    break;
+                // list ( $element, $value ) = explode(": ",$plistLine);
+                if (!strpos($plistLine, '@eaDir')) list ($element, $value) = explode(': ', $plistLine, 2);
+                if ($element === 'file' OR $element === 'playlist') {
+                    $plCounter++;
+                    $browseMode = FALSE;
+                    // $plistFile = $value;
+                    $plistArray[$plCounter][$element] = $value;
+                    $plistArray[$plCounter]['fileext'] = parseFileStr($value, '.');
+                } elseif ($element === 'directory') {
+                    $plCounter++;
+                    // record directory index for further processing
+                    $dirCounter++;
+                    // $plistFile = $value;
+                    $plistArray[$plCounter]['directory'] = $value;
+                } else if ($browseMode) {
+                    if ($element === 'Album') {
+                        $plCounter++;
+                        $plistArray[$plCounter]['album'] = $value;
+                    } else if ($element === 'Artist') {
+                        $plCounter++;
+                        $plistArray[$plCounter]['artist'] = $value;
+                    } else if ($element === 'Genre') {
+                        $plCounter++;
+                        $plistArray[$plCounter]['genre'] = $value;
+                    }
+                } else {
+                    $plistArray[$plCounter][$element] = $value;
+//                    $plistArray[$plCounter]['Time2'] = songTime($plistArray[$plCounter]['Time']);
+                }
+                $plistLine = strtok("\n");
+            }
+        }
+        return $plistArray;
     }
 }

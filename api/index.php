@@ -86,7 +86,7 @@ if($config){
     })->name('deleteSource');
 
     $app->get('/test', function() use ($app) {
-        testController::test($app);
+        settingsController::settingsTest($app);
     })->name('test');
 
     $app->get('/network', function() use ($app) {
