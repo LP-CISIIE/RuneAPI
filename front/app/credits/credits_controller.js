@@ -3,7 +3,7 @@ rune.controller('CreditsController',['$scope', '$http', '$rootScope', function($
 	console.log("cred");
 
 	$scope.team = function() {
-            $http.get($rootScope.root + '/index.php/credits')
+            $http.get($rootScope.root + '/credits')
                 .then(function(data){
                     $scope.datas=JSON.parse(data.data.credits);
                     console.log(data.data.credits);

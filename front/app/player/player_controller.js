@@ -40,10 +40,17 @@ rune.controller('PlayerController',
 
         // volume music
         $scope.player_volume = function (){
-            $http.get($rootScope.root + '/volume/' + $scope.volume)
+            $http.get($rootScope.root + '/volume' + $scope.volume)
                 .then(function(response){
                     console.log(response);
                 })
         };
+
+        $scope.current_track = function () {
+            $http.get($rootScope.root + '/track' + $scope.volume)
+                .then(function(response){
+                    console.log(response);
+                })
+        }
     }]
 );

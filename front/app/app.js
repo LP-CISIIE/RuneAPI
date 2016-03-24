@@ -4,6 +4,13 @@ var rune = angular.module('rune', ['ui.materialize']).config(function($sceProvid
     $sceProvider.enabled(false);
 });
 
+rune.config(function ($httpProvider) {
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+});
+
 $(function(){
     //$("#iframe").contents().find("span").hide();
 

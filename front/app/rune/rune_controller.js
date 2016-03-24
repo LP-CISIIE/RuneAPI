@@ -26,10 +26,25 @@ rune.controller('RuneController',
 
         $scope.runePush = function(){
             console.log(JSON.stringify($rootScope.runes));
-            $http.post($rootScope.root + '/runes', JSON.stringify($rootScope.runes))
-                .then(function(response){
-                    console.log(response);
-                })
+            //$http.put($rootScope.root + '/runes', JSON.stringify($rootScope.runes))
+            //    .then(function(response){
+            //        console.log(response);
+            //    });
+
+            $http({
+                url: $rootScope.root + '/runes',
+                dataType: 'json',
+                method: 'PUT',
+                data: JSON.stringify($rootScope.runes),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+
+            }).success(function(response){
+                $scope.response = response;
+            }).error(function(error){
+                $scope.error = error;
+            });
 
         };
 
