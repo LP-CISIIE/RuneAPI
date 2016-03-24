@@ -2,17 +2,24 @@
  * Created by LocoMan on 25/02/2016.
  */
 rune.controller('PlaylistController',
-    ['$scope', '$http', '$scope', '$rootScope', function($scope, $http, $scope, $rootScope){
+    ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
         $scope.playlist = {};
         $scope.playlist.repeat = false;
         $scope.playlist.random = false;
         $scope.playlist.sound = false;
 
-        //get playlist
         $scope.playlist_get = function(){
-            $http.get($rootScope.root + '/playlist/getPlaylist')
+            tracks = [];
+            $scope.tracks = [];
+            $http.get($rootScope.root + '/playlist/playlist')
                 .then(function(response){
                     console.log(response);
+
+                    response.data.infos.forEach(function(infos){
+                        tracks.push(infos);
+                    });
+                    $scope.tracks = tracks;
+                    console.log($scope.tracks);
                 })
         };
 
@@ -39,14 +46,6 @@ rune.controller('PlaylistController',
         // repeat OFF
         $scope.playlist_repeatOff = function (){
             $http.get($rootScope.root + '/playlist/repeatOff')
-                .then(function(response){
-                    console.log(response);
-                })
-        };
-
-        // get playlist
-        $scope.playlist_getPlaylist = function (){
-            $http.get($rootScope.root + '/playlist/getPlaylist')
                 .then(function(response){
                     console.log(response);
                 })
@@ -101,10 +100,21 @@ rune.controller('PlaylistController',
 
         // sound repeat off
         $scope.playlist_soundRepeatOff = function (){
-            $http.get($rootScope.root + '/api/playlist/soundRepeatOff')
+            $http.get($rootScope.root + '/playlist/soundRepeatOff')
                 .then(function(response){
                     console.log(response);
                 })
         };
+
+        // play song on click
+        $scope.playOnClick = function (id){
+            $http.get($rootScope.root + '/player/playOnClick?id=' + id)
+                .then(function(response){
+                    console.log(response);
+                })
+        };
+
+        //appel de fonction
+        $scope.playlist_get();
     }]
 );
