@@ -163,8 +163,9 @@ class playerController
         $app->response->headers->set('Content-Type', 'application/json');
         $socket = openMpdSocket('/run/mpd.sock');
         sendMpdCommand($socket, 'status');
-        $song = readMpdResponse($socket);
-        echo json_encode(self::parsePlaylist($song));
+        $infos = readMpdResponse($socket);
+        $obj = array("infos" => self::parsePlaylist($infos));
+        echo json_encode($obj);
     }
 
     public static function currentSong($app)
@@ -173,7 +174,8 @@ class playerController
         $socket = openMpdSocket('/run/mpd.sock');
         sendMpdCommand($socket, 'currentsong');
         $song = readMpdResponse($socket);
-        echo json_encode(self::parsePlaylist($song));
+        $obj = array("song" => self::parsePlaylist($song));
+        echo json_encode($obj);
     }
 
     public static function parsePlaylist($resp)
