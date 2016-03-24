@@ -1,13 +1,28 @@
 <div class="row">
-    <div class="col s6 offset-s2">
-        <h3>Titre : {{ song }}</h3>
-        <p>Artist : {{ artist }}</p>
-        <p>album artist : {{ albumArtist }}</p>
-        <p>date : {{ date }}</p>
-        <p>fichier : {{ file }}</p>
+    <div class="col s6 offset-s3">
+        <div class="row center">
+            <h5>{{ track }}</h5>
+        </div>
+        <div class="row center">
+            <p><strong>{{ artist }}</strong></p>
+        </div>
+        <div class="row center">
+            <p><i>{{ albumArtist }}</i></p>
+        </div>
+        <div class="row center">
+            <p>{{ date }}</p>
+        </div>
+        <div class="row center">
+            <p>{{ song_number }} / {{ playlist_length }}</p>
+        </div>
+
+
+
+
+
     </div>
 </div>
-<div class="center">
+<div class="center" id="controls">
     <ul class="pagination">
         <li class="disabled grey-text"><i class="material-icons">chevron_left</i></li>
         <li class="waves-effect" ng-click="player_previous()"><i class="material-icons">skip_previous</i></li>

@@ -3,6 +3,7 @@
 namespace api\controller;
 include_once("simple_html_dom.php");
 require_once('/var/www/app/libs/runeaudio.php');
+use api\controller\playerController;
 //include('/srv/http/app/config/config.php');
 ini_set('display_error', 1);
 ini_set('error_reporting', E_ALL | E_STRICT);
@@ -110,7 +111,7 @@ class settingsController
         sendMpdCommand($socket, 'status');
         $song = readMpdResponse($socket);
 //        var_dump(self::parsePlaylist($song));
-
+        echo json_encode(playerController::parsePlaylist($song));
 
 //        $curTrack = getTrackInfo($socket, 2);
 //        var_dump($curTrack);
