@@ -22,7 +22,7 @@ $app = new Slim\Slim(array(
 $app->contentType('text/html; charset=utf-8');
 $config = parse_ini_file('config.ini');
 $app->response->headers->set('Access-Control-Allow-Headers', 'Content-Type');
-$app->response->header('Access-Control-Allow-Origin', '*');
+//$app->response->headers->set('Access-Control-Allow-Origin', '*');
 $app->response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
 
 if($config){
