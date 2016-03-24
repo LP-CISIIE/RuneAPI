@@ -63,6 +63,7 @@ rune.controller('PlayerController',
 
         // get current track info
         $scope.current_track = function () {
+            // $scope.loading_track = true;
             $http.get($rootScope.root + '/song')
                 .then(function(response){
                     console.log(response);
@@ -72,7 +73,9 @@ rune.controller('PlayerController',
                     $scope.albumArtist = response.data.song[0].AlbumArtist;
                     $scope.date = response.data.song[0].Date;
                     $scope.file = response.data.song[0].file;
-                })
+                }).finally(function(){
+                    $scope.loading_track = false;
+                });
         };
 
         // get player infos (playing or not, time elapsed...)
@@ -80,14 +83,20 @@ rune.controller('PlayerController',
             $http.get($rootScope.root + '/playerStatus')
                 .then(function(response){
                     console.log(response);
+                    $scope.loading_track = true;
                     $scope.volume = response.data.infos[0].volume;
-                    if(response.data.infos[0].state == "play") {
+                    if(response.data.infos[0].state != "stop") {
                         $scope.current_track();
-                        $scope.playing = true;
                         $scope.song_number = response.data.infos[0].song;
                         $scope.song_number ++;
                         $scope.playlist_length = response.data.infos[0].playlistlength;
-                    }else{
+                    }
+                    else if(response.data.infos[0].state != "play")
+                    {
+                        $scope.playing = true;
+                    }
+                    else
+                    {
                         $scope.playing = false;
                         $scope.reset();
                     }
