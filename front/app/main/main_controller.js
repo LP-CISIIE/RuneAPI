@@ -4,7 +4,7 @@
 rune.controller('MainController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
 
-        $rootScope.root = "http://rune.ddns.net:83";
+        $rootScope.root = "http://192.168.1.14:83";
         $scope.show = 1;
         $scope.show_player = true;
         $scope.show_manager = false;
@@ -15,10 +15,9 @@ rune.controller('MainController',
         $rootScope.runes =[];
         $scope.rune_select = $rootScope.rune;
         
-     $scope.change_rune = function(rune) {
-        console.log("CHANGEMENT DE RUNE");
-        console.log(rune);
-     }
+        $scope.change_rune = function(rune) {
+            console.log("CHANGEMENT DE RUNE POUR : " + rune);
+        };
 /*
         console.log($rootScope.runes); // :/
         $scope.$watch('$rootScope.rune', function () {

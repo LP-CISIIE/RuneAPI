@@ -12,7 +12,8 @@ rune.controller('PlayerController',
         $scope.player_start = function (){
             $http.get($rootScope.root + '/player/play')
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== PLAY ===");
+                    $rootScope.player_status();
                 });
 
             $scope.playing = true;
@@ -22,7 +23,7 @@ rune.controller('PlayerController',
         $scope.player_pause = function (){
             $http.get($rootScope.root + '/player/pause')
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== pause ===");
                 });
 
             $scope.playing = false;
@@ -32,7 +33,7 @@ rune.controller('PlayerController',
         $scope.player_previous = function (){
             $http.get($rootScope.root + '/player/previous')
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== PREVIOUS ===");
                 })
         };
 
@@ -40,7 +41,7 @@ rune.controller('PlayerController',
         $scope.player_next = function (){
             $http.get($rootScope.root + '/player/next')
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== NEXT ===");
                 })
         };
 
@@ -48,7 +49,7 @@ rune.controller('PlayerController',
         $scope.player_volume = function (){
             $http.get($rootScope.root + '/volume/' + $scope.volume)
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== VOLUME ===");
                 })
         };
 
@@ -71,9 +72,11 @@ rune.controller('PlayerController',
             $http.get($rootScope.root + '/playerStatus')
                 .then(function(response){
                     console.log(response);
-                    $scope.playing = response.data.infos[0].state;
                     if(response.data.infos[0].state == "play") {
                         $scope.current_track();
+                        $scope.playing = true;
+                    }else{
+                        $scope.playing = false;
                     }
                 })
         };
