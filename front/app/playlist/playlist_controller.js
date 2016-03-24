@@ -7,19 +7,18 @@ rune.controller('PlaylistController',
         $scope.playlist.repeat = false;
         $scope.playlist.random = false;
         $scope.playlist.sound = false;
-        $rootScope.tracks = [];
-
-        //get playlist
-        $scope.tracks = $rootScope.tracks;
 
         $scope.playlist_get = function(){
+            tracks = [];
+            $scope.tracks = [];
             $http.get($rootScope.root + '/playlist/playlist')
                 .then(function(response){
                     console.log(response);
 
                     response.data.infos.forEach(function(infos){
-                        $rootScope.tracks.push(infos);
+                        tracks.push(infos);
                     });
+                    $scope.tracks = tracks;
                     console.log($scope.tracks);
                 })
         };
@@ -101,7 +100,15 @@ rune.controller('PlaylistController',
 
         // sound repeat off
         $scope.playlist_soundRepeatOff = function (){
-            $http.get($rootScope.root + '/api/playlist/soundRepeatOff')
+            $http.get($rootScope.root + '/playlist/soundRepeatOff')
+                .then(function(response){
+                    console.log(response);
+                })
+        };
+
+        // play song on click
+        $scope.playOnClick = function (id){
+            $http.get($rootScope.root + '/player/playOnClick?id=' + id)
                 .then(function(response){
                     console.log(response);
                 })

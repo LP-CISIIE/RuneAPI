@@ -44,7 +44,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="track in tracks | orderBy: 'track.Id' ">
+            <tr ng-repeat="track in tracks | orderBy: 'track.Id' " ng-click="playOnClick(track.Id)">
                 <td>{{ track.Id }}</td>
                 <td>{{ track.Title }}</td>
                 <td>{{ track.Artist }}</td>

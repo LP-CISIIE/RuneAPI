@@ -12,6 +12,9 @@ class playerController
             case 'play' :
                 self::play($app);
                 break;
+            case 'playOnClick':
+                self::playOnClick($app);
+                break;
             case 'pause' :
                 self::pause($app);
                 break;
@@ -60,6 +63,35 @@ class playerController
                 "message" => $html
             ));
         }
+    }
+
+    public static function playOnClick($app)
+    {
+        $app->response->headers->set('Content-Type', 'application/json');
+        $num = $app->request->getBody();
+        echo $num;
+
+
+        /*// l'url du html à récupérer
+        $html = file_get_contents($app->rootUri . '/command/?cmd=play%'.$num);
+        // delete the blank space from the answer
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "play",
+                "message" => "Done"
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "play",
+                "message" => $html
+            ));
+        }*/
     }
 
     public static function stop($app)
