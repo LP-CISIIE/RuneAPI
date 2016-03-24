@@ -1,7 +1,7 @@
 <?php
 	namespace api\controller;
 
-	class mdpController
+	class mpdController
 	{
 		public static function getMpd($app){
 			$app->response->headers->set('Content-Type', 'application/json');

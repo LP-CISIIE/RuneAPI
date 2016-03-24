@@ -9,7 +9,7 @@ use api\controller\soundController;
 use api\controller\sourcesController;
 use api\controller\gestionController;
 use api\controller\testController;
-use api\controller\mdpController;
+use api\controller\mpdController;
 use api\controller\networkController;
 use api\controller\runeController;
 use api\controller\debugController;
@@ -45,11 +45,11 @@ if($config){
     })->name('gestion');
 
 	$app->get('/mpd', function() use ($app) {
-		mdpController::getMpd($app);
+		mpdController::getMpd($app);
 	})->name('mpd');
 
     $app->post('/mpd', function() use ($app) {
-       mdpController::setOutput($app);
+       mpdController::setOutput($app);
     })->name('setOutput');
 
     $app->get('/settings', function() use ($app) {
