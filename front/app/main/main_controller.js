@@ -2,9 +2,9 @@
  * Created by LocoMan on 26/02/2016.
  */
 rune.controller('MainController',
-    ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
+    ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', function($scope, $http, $rootScope, runeCurrent, Rune){
 
-        $rootScope.root = "http://rune.ddns.net:83";
+        $rootScope.root = "http://192.168.1.14:83";
         $scope.show = 1;
         $scope.show_player = true;
         $scope.show_manager = false;
@@ -16,7 +16,12 @@ rune.controller('MainController',
         $scope.rune_select = $rootScope.rune;
         
         $scope.change_rune = function(rune) {
-            console.log("CHANGEMENT DE RUNE POUR : " + rune);
+            $rune = new Rune(JSON.parse(rune));
+            console.log("CHANGEMENT DE RUNE POUR : " + $rune);
+            runeCurrent.rune = $rune;
+            $rootScope.root = $rune.ip2;
+            console.log($rune.ip2);
+            $rootScope.player_status();
         };
 /*
         console.log($rootScope.runes); // :/

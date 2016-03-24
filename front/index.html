@@ -82,8 +82,8 @@
 
                 <!--select rune-->
                 <div class="col s4 offset-s4" ng-show="show_player">
-                    <select class="" ng-change="change_rune(run)" ng-model="run" material-select watch>
-                        <option  ng-repeat="run in runes">  {{run.label}}</option>
+                    <select class="" ng-change="change_rune(rune)" ng-model="rune" material-select watch>
+                        <option  ng-repeat="rune in runes" value={{rune}}>{{rune.label}}</option>
                     </select>
                 </div>
             </div>
