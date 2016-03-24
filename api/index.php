@@ -92,6 +92,10 @@ if($config){
         settingsController::settingsTest($app);
     })->name('test');
 
+    $app->get('/test2', function() use ($app) {
+        testController::test($app);
+    })->name('test');
+
     $app->get('/network', function() use ($app) {
         networkController::getNetwork($app);
     })->name('network');

@@ -2,17 +2,25 @@
  * Created by LocoMan on 25/02/2016.
  */
 rune.controller('PlaylistController',
-    ['$scope', '$http', '$scope', '$rootScope', function($scope, $http, $scope, $rootScope){
+    ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
         $scope.playlist = {};
         $scope.playlist.repeat = false;
         $scope.playlist.random = false;
         $scope.playlist.sound = false;
+        $rootScope.tracks = [];
 
         //get playlist
+        $scope.tracks = $rootScope.tracks;
+
         $scope.playlist_get = function(){
-            $http.get($rootScope.root + '/playlist/getPlaylist')
+            $http.get($rootScope.root + '/playlist/playlist')
                 .then(function(response){
                     console.log(response);
+
+                    response.data.infos.forEach(function(infos){
+                        $rootScope.tracks.push(infos);
+                    });
+                    console.log($scope.tracks);
                 })
         };
 
@@ -39,14 +47,6 @@ rune.controller('PlaylistController',
         // repeat OFF
         $scope.playlist_repeatOff = function (){
             $http.get($rootScope.root + '/playlist/repeatOff')
-                .then(function(response){
-                    console.log(response);
-                })
-        };
-
-        // get playlist
-        $scope.playlist_getPlaylist = function (){
-            $http.get($rootScope.root + '/playlist/getPlaylist')
                 .then(function(response){
                     console.log(response);
                 })
@@ -106,5 +106,8 @@ rune.controller('PlaylistController',
                     console.log(response);
                 })
         };
+
+        //appel de fonction
+        $scope.playlist_get();
     }]
 );

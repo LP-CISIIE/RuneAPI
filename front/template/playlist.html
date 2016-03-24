@@ -30,6 +30,9 @@
                 On
             </label>
         </div>
+        <div>
+            <button class="btn" ng-click="playlist_get()">Actualiser la playlist</button>
+        </div>
         <table class="highlight striped centered">
             <thead>
             <tr>
@@ -41,12 +44,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="musique in musiques | orderBy: 'musique.number' ">
-                <td>{{ musique.number }}</td>
-                <td>{{ musique.titre }}</td>
-                <td>{{ musique.artiste }}</td>
-                <td>{{ musique.album }}</td>
-                <td>{{ musique.duree }}</td>
+            <tr ng-repeat="track in tracks | orderBy: 'track.Id' ">
+                <td>{{ track.Id }}</td>
+                <td>{{ track.Title }}</td>
+                <td>{{ track.Artist }}</td>
+                <td>{{ track.Album }}</td>
+                <td>{{ track.Time }}</td>
             </tr>
             </tbody>
         </table>
