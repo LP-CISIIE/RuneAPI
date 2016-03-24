@@ -125,7 +125,7 @@ rune.controller('SettingsController',
         $scope.get_settings = function (){
             $http.get($rootScope.root + '/settings')
                 .then(function(response){
-                    console.log(response.data.settings.features);
+                    //console.log(response.data.settings.features);
                     features = response.data.settings.features;
                     $scope.airplay.enable = features.airplay == 1 ? true : false;
                     $scope.airplay.name = features.airplay_name;
