@@ -108,10 +108,12 @@ rune.controller('PlaylistController',
 
         // play song on click
         $scope.playOnClick = function (id){
-            $http.get($rootScope.root + '/player/playOnClick?id=' + id)
+            console.log(id);
+            $http.get($rootScope.root + '/player/playOnClick/'+id)
                 .then(function(response){
                     console.log(response);
-                })
+                });
+            $rootScope.player_status();
         };
 
         //appel de fonction

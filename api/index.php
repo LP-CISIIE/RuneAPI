@@ -64,6 +64,10 @@ if($config){
         playerController::player($app, $action);
     })->name('player');
 
+    $app->get('/player/playOnClick/:num', function($num) use ($app) {
+        playerController::playOnClick($app, $num);
+    });
+
     $app->get('/playlist/:action', function($action) use ($app) {
         playlistController::playlist($app, $action);
     })->name('playlist');
