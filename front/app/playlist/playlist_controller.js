@@ -10,7 +10,7 @@ rune.controller('PlaylistController',
 
         //get playlist
         $scope.playlist_get = function(){
-            $http.get($rootScope.root + '/api/playlist/getPlaylist')
+            $http.get($rootScope.root + '/playlist/getPlaylist')
                 .then(function(response){
                     console.log(response);
                 })
@@ -30,7 +30,7 @@ rune.controller('PlaylistController',
 
         // repeat ON
         $scope.playlist_repeatOn = function (){
-            $http.get($rootScope.root + '/api/playlist/repeatOn')
+            $http.get($rootScope.root + '/playlist/repeatOn')
                 .then(function(response){
                     console.log(response);
                 })
@@ -38,7 +38,7 @@ rune.controller('PlaylistController',
 
         // repeat OFF
         $scope.playlist_repeatOff = function (){
-            $http.get($rootScope.root + '/api/playlist/repeatOff')
+            $http.get($rootScope.root + '/playlist/repeatOff')
                 .then(function(response){
                     console.log(response);
                 })
@@ -46,7 +46,7 @@ rune.controller('PlaylistController',
 
         // get playlist
         $scope.playlist_getPlaylist = function (){
-            $http.get($rootScope.root + '/api/playlist/getPlaylist')
+            $http.get($rootScope.root + '/playlist/getPlaylist')
                 .then(function(response){
                     console.log(response);
                 })
@@ -65,7 +65,7 @@ rune.controller('PlaylistController',
         };
         // random on
         $scope.playlist_randomOn = function (){
-            $http.get($rootScope.root + '/api/playlist/randomOn')
+            $http.get($rootScope.root + '/playlist/randomOn')
                 .then(function(response){
                     console.log(response);
                 })
@@ -73,7 +73,7 @@ rune.controller('PlaylistController',
 
         // random off
         $scope.playlist_randomOff = function (){
-            $http.get($rootScope.root + '/api/playlist/randomOff')
+            $http.get($rootScope.root + '/playlist/randomOff')
                 .then(function(response){
                     console.log(response);
                 })
@@ -93,7 +93,7 @@ rune.controller('PlaylistController',
 
         // sound repeat on
         $scope.playlist_soundRepeatOn = function (){
-            $http.get($rootScope.root + '/api/playlist/soundRepeatOn')
+            $http.get($rootScope.root + '/playlist/soundRepeatOn')
                 .then(function(response){
                     console.log(response);
                 })
