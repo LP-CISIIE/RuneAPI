@@ -13,19 +13,8 @@ class settingsController
 {
     public static function settings($app)
     {
-        function getState($state)
-        {
-            $value = 0;
-            if ($state->getAttribute('class') == "boxed-group") {
-                $value = "1";
-            } else {
-                $value = '0';
-            };
-            return $value;
-        }
-
         $html = new simple_html_dom();
-        $html->load_file('http://192.168.1.14/settings');
+        $html->load_file($app->rootUri . "/settings");
         $selects = $html->find('select');
         $inputs = $html->find('input');
         $boxes = $html->find('#features-management', 0);
@@ -112,60 +101,5 @@ class settingsController
         $song = readMpdResponse($socket);
 //        var_dump(self::parsePlaylist($song));
         echo json_encode(playerController::parsePlaylist($song));
-
-//        $curTrack = getTrackInfo($socket, 2);
-//        var_dump($curTrack);
-//        ui_status($mpd, $status);
-
     }
-
-//    public static function parsePlaylist($resp)
-//    {
-//        if (is_null($resp)) {
-//            return null;
-//        } else {
-//            $dirCounter=-1;
-//            $plistArray = array();
-//            $plistLine = strtok($resp, "\n");
-//            // $plistFile = "";
-//            $plCounter = -1;
-//            $browseMode = TRUE;
-//            while ($plistLine) {
-//                if($plistLine == "OK")
-//                    break;
-//                // list ( $element, $value ) = explode(": ",$plistLine);
-//                if (!strpos($plistLine, '@eaDir')) list ($element, $value) = explode(': ', $plistLine, 2);
-//                if ($element === 'file' OR $element === 'playlist') {
-//                    $plCounter++;
-//                    $browseMode = FALSE;
-//                    // $plistFile = $value;
-//                    $plistArray[$plCounter][$element] = $value;
-//                    $plistArray[$plCounter]['fileext'] = parseFileStr($value, '.');
-//                } elseif ($element === 'directory') {
-//                    $plCounter++;
-//                    // record directory index for further processing
-//                    $dirCounter++;
-//                    // $plistFile = $value;
-//                    $plistArray[$plCounter]['directory'] = $value;
-//                } else if ($browseMode) {
-//                    if ($element === 'Album') {
-//                        $plCounter++;
-//                        $plistArray[$plCounter]['album'] = $value;
-//                    } else if ($element === 'Artist') {
-//                        $plCounter++;
-//                        $plistArray[$plCounter]['artist'] = $value;
-//                    } else if ($element === 'Genre') {
-//                        $plCounter++;
-//                        $plistArray[$plCounter]['genre'] = $value;
-//                    }
-//                } else {
-//                    $plistArray[$plCounter][$element] = $value;
-////                    $plistArray[$plCounter]['Time2'] = songTime($plistArray[$plCounter]['Time']);
-//                }
-//                $plistLine = strtok("\n");
-//            }
-//        }
-//        return $plistArray;
-//    }
-//playlist
 }

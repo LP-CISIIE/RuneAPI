@@ -12,14 +12,12 @@ rune.config(function ($httpProvider) {
 });
 
 $(function(){
-    //$("#iframe").contents().find("span").hide();
-
-});
-$(function(){
     var f=$('#iframe');
     f.load(function(){
         f.contents().find('div').hide();
     });
+
+    $(".side-nav li").click(function() { $('.button-collapse').sideNav('hide'); });
 });
 
 

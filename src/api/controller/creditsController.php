@@ -7,13 +7,13 @@
 		public static function credits($app)
 		{
 
-			$html = file_get_contents($app->rootUri . "credits/");
+			$html = file_get_contents($app->rootUri . "/credits/");
 			$dom = new \DOMDocument();
 			libxml_use_internal_errors(true);
 			$dom->loadHTML($html);
 			libxml_clear_errors();
 			$xpath = new \DOMXpath($dom);
-			$tab= array();
+			$tab = array();
 
 
 			$tab["team"]=array();
