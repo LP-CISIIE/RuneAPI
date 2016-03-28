@@ -3,8 +3,8 @@
         <label><strong>Audio output interface</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select  ng-model="AudioOutput" material-select="" watch="">
-                <option ng-repeat="(keyAudioOutput, valueAudioOutput) in dataMpd.AudioOutput" ng-if="keyAudioOutput != 'select'" ng-selected="valueAudioOutput === dataMpd.AudioOutput['select']">{{valueAudioOutput}}</option>
+            <select id="AudioOutput" material-select="" watch="">
+                <option value="{{valueAudioOutput}}" ng-repeat="(keyAudioOutput, valueAudioOutput) in dataMpd.AudioOutput" ng-if="keyAudioOutput != 'select'" ng-selected="valueAudioOutput === dataMpd.AudioOutput['select']">{{valueAudioOutput}}</option>
             </select>
         </label>
     </div>
@@ -14,8 +14,8 @@
         <label><strong>Volume control</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select  material-select="" watch="">
-                <option ng-repeat="(keyVolumeControl, valueVolumeControl) in dataMpd.VolumeControle" ng-if="keyVolumeControl != 'select'" ng-selected="valueVolumeControl === dataMpd.VolumeControle['select']">{{valueVolumeControl}}</option>
+            <select id="VolumeControle" material-select="" watch="">
+                <option value="{{valueVolumeControl}}" ng-repeat="(keyVolumeControl, valueVolumeControl) in dataMpd.VolumeControle" ng-if="keyVolumeControl != 'select'" ng-selected="valueVolumeControl === dataMpd.VolumeControle['select']">{{valueVolumeControl}}</option>
             </select>
         </label>
     </div>
@@ -25,7 +25,7 @@
     <div class="row">
         <label><strong>Port</strong></label>
         <label>
-            <input type="text" value="{{dataMpd.Port}}">
+            <input id="port" type="text" value="{{dataMpd.Port}}">
         </label>
     </div>
     <br/>    
@@ -33,8 +33,8 @@
         <label><strong>Daemon user : group</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyDaemonUser, valueDaemonUser) in dataMpd.DaemonUser" ng-if="keyDaemonUser != 'select'" ng-selected="valueDaemonUser === dataMpd.DaemonUser['select']">{{valueDaemonUser}}</option>
+            <select id="DaemonUser" material-select="" watch="">
+                <option value="{{valueDaemonUser}}" ng-repeat="(keyDaemonUser, valueDaemonUser) in dataMpd.DaemonUser" ng-if="keyDaemonUser != 'select'" ng-selected="valueDaemonUser === dataMpd.DaemonUser['select']">{{valueDaemonUser}}</option>
             </select>
         </label>
     </div>
@@ -43,8 +43,8 @@
         <label><strong>Log level</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyLogLevel, valueLogLevel) in dataMpd.LogLevel" ng-if="keyLogLevel != 'select'" ng-selected="valueLogLevel === dataMpd.LogLevel['select']">{{valueLogLevel}}</option>
+            <select id="LogLevel" material-select="" watch="">
+                <option value="{{valueLogLevel}}" ng-repeat="(keyLogLevel, valueLogLevel) in dataMpd.LogLevel" ng-if="keyLogLevel != 'select'" ng-selected="valueLogLevel === dataMpd.LogLevel['select']">{{valueLogLevel}}</option>
             </select>
         </label>
     </div>
@@ -53,8 +53,8 @@
         <label><strong>State file</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyStateFile, valueStateFile) in dataMpd.StateFile" ng-if="keyStateFile != 'select'" ng-selected="valueStateFile === dataMpd.StateFile['select']">{{valueStateFile}}</option>
+            <select id="StateFile" material-select="" watch="">
+                <option value="{{valueStateFile}}"ng-repeat="(keyStateFile, valueStateFile) in dataMpd.StateFile" ng-if="keyStateFile != 'select'" ng-selected="valueStateFile === dataMpd.StateFile['select']">{{valueStateFile}}</option>
             </select>
         </label>
     </div>
@@ -63,8 +63,8 @@
         <label><strong>FFmpeg decoder plugin</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyFFmpeg, valueFFmpeg) in dataMpd.FFmpeg" ng-if="keyFFmpeg != 'select'" ng-selected="valueFFmpeg === dataMpd.FFmpeg['select']">{{valueFFmpeg}}</option>
+            <select id="FFmpeg" material-select="" watch="">
+                <option value="{{valueFFmpeg}}" ng-repeat="(keyFFmpeg, valueFFmpeg) in dataMpd.FFmpeg" ng-if="keyFFmpeg != 'select'" ng-selected="valueFFmpeg === dataMpd.FFmpeg['select']">{{valueFFmpeg}}</option>
             </select>
         </label>
     </div>
@@ -73,8 +73,8 @@
         <label><strong>Gapless mp3 playback</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyGapless, valueGapless) in dataMpd.Gapless" ng-if="keyGapless != 'select'" ng-selected="valueGapless === dataMpd.Gapless['select']">{{valueGapless}}</option>
+            <select id="Gapless" material-select="" watch="">
+                <option calue="{{valueGapless}}" ng-repeat="(keyGapless, valueGapless) in dataMpd.Gapless" ng-if="keyGapless != 'select'" ng-selected="valueGapless === dataMpd.Gapless['select']">{{valueGapless}}</option>
             </select>
         </label>
     </div>
@@ -83,8 +83,8 @@
         <label><strong>DSD support</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyDSDSupport, valueDSDSupport) in dataMpd.DSDSupport" ng-if="keyDSDSupport != 'select'" ng-selected="valueDSDSupport === dataMpd.DSDSupport['select']">{{valueDSDSupport}}</option>
+            <select id="DSDSupport" material-select="" watch="">
+                <option value="{{valueDSDSupport}}" ng-repeat="(keyDSDSupport, valueDSDSupport) in dataMpd.DSDSupport" ng-if="keyDSDSupport != 'select'" ng-selected="valueDSDSupport === dataMpd.DSDSupport['select']">{{valueDSDSupport}}</option>
             </select>
         </label>
     </div>
@@ -93,8 +93,8 @@
         <label><strong>Volume normalization</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyVolumeNormalization, valueVolumeNormalization) in dataMpd.VolumeNormalization" ng-if="keyVolumeNormalization != 'select'" ng-selected="valueVolumeNormalization === dataMpd.VolumeNormalization['select']">{{valueVolumeNormalization}}</option>
+            <select id="VolumeNormalization" material-select="" watch="">
+                <option value="{{valueVolumeNormalization}}" ng-repeat="(keyVolumeNormalization, valueVolumeNormalization) in dataMpd.VolumeNormalization" ng-if="keyVolumeNormalization != 'select'" ng-selected="valueVolumeNormalization === dataMpd.VolumeNormalization['select']">{{valueVolumeNormalization}}</option>
             </select>
         </label>
     </div>
@@ -102,7 +102,7 @@
     <div class="row">
         <label><strong>Audio buffer size</strong></label>
         <label>
-            <input type="text" value="{{dataMpd.AudioBufferSize}}">
+            <input id="AudioBufferSuze" type="text" value="{{dataMpd.AudioBufferSize}}">
         </label>
     </div>
     <br/>
@@ -110,8 +110,8 @@
         <label><strong>Buffer before play</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyBuffer, valueBuffer) in dataMpd.Buffer" ng-if="keyBuffer != 'select'" ng-selected="valueBuffer === dataMpd.Buffer['select']">{{valueBuffer}}</option>
+            <select id="Buffer" material-select="" watch="">
+                <option value="{{valueBuffer}}" ng-repeat="(keyBuffer, valueBuffer) in dataMpd.Buffer" ng-if="keyBuffer != 'select'" ng-selected="valueBuffer === dataMpd.Buffer['select']">{{valueBuffer}}</option>
             </select>
         </label>
     </div>
@@ -120,10 +120,38 @@
         <label><strong>Auto update</strong></label>
         <label>
             <span class="caret">▼</span>
-            <select material-select="" watch="">
-                <option ng-repeat="(keyAutoUpdate, valueAutoUpdate) in dataMpd.AutoUpdate" ng-if="keyAutoUpdate != 'select'" ng-selected="valueAutoUpdate === dataMpd.AutoUpdate['select']">{{valueAutoUpdate}}</option>
+            <select id="AutoUpdate" material-select="" watch="">
+                <option value="{{valueAutoUpdate}}" ng-repeat="(keyAutoUpdate, valueAutoUpdate) in dataMpd.AutoUpdate" ng-if="keyAutoUpdate != 'select'" ng-selected="valueAutoUpdate === dataMpd.AutoUpdate['select']">{{valueAutoUpdate}}</option>
             </select>
         </label>
     </div>
-    <a class="waves-effect waves-light btn">Validate</a>
+    <a class="waves-effect waves-light btn" ng-click="validate()">Validate</a>
 </div>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>MPD Settings updated</h4>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+<div id="modal2" class="modal" style="text-align:center">
+    <div class="modal-content">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
