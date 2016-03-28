@@ -82,7 +82,6 @@ rune.controller('PlayerController',
         $rootScope.player_status = function () {
             $http.get($rootScope.root + '/playerStatus')
                 .then(function(response){
-                    console.log(response);
                     $scope.loading_track = true;
                     $scope.volume = response.data.infos[0].volume;
                     if(response.data.infos[0].state != "stop") {
