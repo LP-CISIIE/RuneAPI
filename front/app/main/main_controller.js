@@ -4,7 +4,7 @@
 rune.controller('MainController',
     ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', function($scope, $http, $rootScope, runeCurrent, Rune){
 
-        $rootScope.root = "http://192.168.1.14:83";
+        $rootScope.root = "http://rune.ddns.net:83";
         $scope.show = 1;
         $scope.show_player = true;
         $scope.show_control = true;

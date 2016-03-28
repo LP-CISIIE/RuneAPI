@@ -19,7 +19,6 @@ rune.controller('RuneController',
                     response.data.runes.forEach(function(rune){
                         $rootScope.runes.push(new Rune(rune));
                     });
-                    console.log($scope.runes);
                 });
         };
 
