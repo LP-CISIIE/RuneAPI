@@ -92,6 +92,10 @@ if($config){
         sourcesController::DeleteSource($app);
     })->name('deleteSource');
 
+    $app->get('/sources/edit/:id', function($id) use ($app) {
+        sourcesController::EditSource($app,$id);
+    })->name('editSource');
+
     $app->get('/test', function() use ($app) {
         settingsController::settingsTest($app);
     })->name('test');
