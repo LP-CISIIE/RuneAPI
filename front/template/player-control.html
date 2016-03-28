@@ -1,0 +1,15 @@
+<div class="center" id="controls">
+    <ul class="pagination">
+        <li class="disabled grey-text"><i class="material-icons">chevron_left</i></li>
+        <li class="waves-effect" ng-click="player_previous()"><i class="material-icons">skip_previous</i></li>
+        <li class="waves-effect" ng-click="player_start()" ng-hide="playing"><i class="material-icons">play_circle_outline</i></li>
+        <li class="waves-effect" ng-click="player_pause()" ng-show="playing"><i class="material-icons">pause_circle_outline</i></li>
+        <li class="waves-effect" ng-click="player_next()"><i class="material-icons">skip_next</i></li>
+        <li class="disabled grey-text"><i class="material-icons">chevron_right</i></li>
+    </ul>
+    <div class="col s4 l4 offset-s4 offset-l4">
+        <p class="range-field">
+            <input type="range" id="volume" min="0" max="100" ng-model="volume" ng-mouseup="player_volume()"/>
+        </p>
+    </div>
+</div>
