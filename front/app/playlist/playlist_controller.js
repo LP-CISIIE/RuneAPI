@@ -13,13 +13,11 @@ rune.controller('PlaylistController',
             $scope.tracks = [];
             $http.get($rootScope.root + '/playlist/playlist')
                 .then(function(response){
-                    console.log(response);
 
                     response.data.infos.forEach(function(infos){
                         tracks.push(infos);
                     });
                     $scope.tracks = tracks;
-                    console.log($scope.tracks);
                 })
         };
 
