@@ -126,10 +126,8 @@ rune.controller('PlaylistController',
             // make the json params to post request
             $data = [];
             $data.push({'dir' : $scope.dir});
-            console.log( JSON.stringify($data));
             $http.post($rootScope.root + '/test3', JSON.stringify($data))
                 .then(function(response){
-                    console.log(response);
                     response.data.dir.forEach(function(data){
                         $scope.responseDirs.push(data);
                     });
