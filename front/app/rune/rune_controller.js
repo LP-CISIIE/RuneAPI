@@ -16,7 +16,6 @@ rune.controller('RuneController',
         $scope.rune_info = function (){
             $http.get($rootScope.root + '/runes')
                 .then(function(response){
-                    console.log(response);
                     response.data.runes.forEach(function(rune){
                         $rootScope.runes.push(new Rune(rune));
                     });

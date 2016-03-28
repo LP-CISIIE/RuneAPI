@@ -1,6 +1,15 @@
 rune.controller('PlayerController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
         $scope.volume = "";
+        $scope.playing = "";
+        $scope.track = "";
+        $scope.artist = "";
+        $scope.album = "";
+        $scope.albumArtist = "";
+        $scope.date = "";
+        $scope.file = "";
+        $scope.song_number = 0;
+        $scope.playlist_length = 0;
 
         $scope.reset = function () {
             $scope.playing = "";
@@ -64,6 +73,7 @@ rune.controller('PlayerController',
         // get current track info
         $scope.current_track = function () {
             // $scope.loading_track = true;
+            $scope.reset();
             $http.get($rootScope.root + '/song')
                 .then(function(response){
                     console.log(response);
@@ -73,6 +83,7 @@ rune.controller('PlayerController',
                     $scope.albumArtist = response.data.song[0].AlbumArtist;
                     $scope.date = response.data.song[0].Date;
                     $scope.file = response.data.song[0].file;
+                    console.log($scope.track);
                 }).finally(function(){
                     $scope.loading_track = false;
                 });
@@ -82,29 +93,41 @@ rune.controller('PlayerController',
         $rootScope.player_status = function () {
             $http.get($rootScope.root + '/playerStatus')
                 .then(function(response){
-                    console.log(response);
+                    console.log("=== PLAYER STATUS ===");
+                    // console.log(response);
                     $scope.loading_track = true;
                     $scope.volume = response.data.infos[0].volume;
-                    if(response.data.infos[0].state != "stop") {
+
+                    // if the player is playing or paused on a song
+                    if(response.data.infos[0].state == "play" || response.data.infos[0].state == "pause") {
+                        $scope.reset();
                         $scope.current_track();
                         $scope.song_number = response.data.infos[0].song;
                         $scope.song_number ++;
                         $scope.playlist_length = response.data.infos[0].playlistlength;
-                    }
-                    else if(response.data.infos[0].state != "play")
+
+                        if(response.data.infos[0].state == "pause"){
+                            $scope.playing = false;
+                            console.log("PAUSE");
+                        }
+                        else{
+                            $scope.playing = true; console.log("PLAYING");
+                        }
+
+                    } // if player is stopped
+                    else if(response.data.infos[0].state == "stop")
                     {
-                        $scope.playing = true;
-                    }
-                    else
-                    {
+                        console.log("STOP");
+                        $scope.loading_track = false;
                         $scope.playing = false;
                         $scope.reset();
+                        $scope.artist = "No song is currently playing";
                     }
                 })
         };
 
         // to know if player is playing
-        $scope.reset();
-        $rootScope.player_status();
+        // $scope.reset();
+        // $rootScope.player_status();
     }]
 );
