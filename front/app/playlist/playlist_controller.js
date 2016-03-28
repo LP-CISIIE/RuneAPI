@@ -13,7 +13,6 @@ rune.controller('PlaylistController',
             $scope.tracks = [];
             $http.get($rootScope.root + '/playlist/playlist')
                 .then(function(response){
-
                     response.data.infos.forEach(function(infos){
                         tracks.push(infos);
                     });
@@ -113,8 +112,32 @@ rune.controller('PlaylistController',
                 });
             $rootScope.player_status();
         };
+        
+        $rootScope.getDir = function (dir) {
+            // empty the dirs to display
+            $scope.responseDirs = [];
+
+            // add the name of the asked dir to the current dir, plus a /
+            if(dir.name == "")
+                $scope.dir = '/';
+            else
+                $scope.dir += dir.name + '/';
+
+            // make the json params to post request
+            $data = [];
+            $data.push({'dir' : $scope.dir});
+            console.log( JSON.stringify($data));
+            $http.post($rootScope.root + '/test3', JSON.stringify($data))
+                .then(function(response){
+                    console.log(response);
+                    response.data.dir.forEach(function(data){
+                        $scope.responseDirs.push(data);
+                    });
+                });
+        };
 
         //appel de fonction
         $scope.playlist_get();
+        $rootScope.getDir($scope.newDir);
     }]
 );

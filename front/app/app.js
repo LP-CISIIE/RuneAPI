@@ -1,4 +1,4 @@
-var rune = angular.module('rune', ['ui.materialize']).config(function($sceProvider) {
+var rune = angular.module('rune', ['ui.materialize', 'ngStorage']).config(function($sceProvider) {
     // Completely disable SCE.  For demonstration purposes only!
     // Do not use in new projects.
     $sceProvider.enabled(false);

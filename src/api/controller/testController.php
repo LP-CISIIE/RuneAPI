@@ -23,6 +23,30 @@ class testController
 
     }
 
+    public static function test3($app)
+    {
+        $data = $app->request->getBody();
+        $key = json_decode($data);
+        if(isset($key[0]->dir)){
+            $dir = '/mnt/MPD/USB/'.$key[0]->dir;
+        }else{
+            $dir = '/mnt/MPD/USB/';
+        }
+        //     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
+        $files1 = scandir($dir);
+        $arr = [];
+        foreach($files1 as $file){
+            array_push($arr, array("name" => $file));
+        }
+        $obj = array(
+            "root" => $key[0]->dir,
+            "dir" => $arr
+        );
+
+
+        echo json_encode($obj);
+    }
+
     public static function parsePlaylist($resp)
     {
         if (is_null($resp)) {

@@ -98,7 +98,11 @@ if($config){
 
     $app->get('/test2', function() use ($app) {
         testController::test($app);
-    })->name('test');
+    })->name('test2');
+
+    $app->post('/test3', function() use ($app) {
+        testController::test3($app);
+    })->name('test3');
 
     $app->get('/network', function() use ($app) {
         networkController::getNetwork($app);

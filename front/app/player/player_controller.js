@@ -1,15 +1,15 @@
 rune.controller('PlayerController',
     ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
-        $scope.volume = "";
-        $scope.playing = "";
-        $scope.track = "";
-        $scope.artist = "";
-        $scope.album = "";
-        $scope.albumArtist = "";
-        $scope.date = "";
-        $scope.file = "";
-        $scope.song_number = 0;
-        $scope.playlist_length = 0;
+        // $scope.volume = "";
+        // $scope.playing = "";
+        // $scope.track = "";
+        // $scope.artist = "";
+        // $scope.album = "";
+        // $scope.albumArtist = "";
+        // $scope.date = "";
+        // $scope.file = "";
+        // $scope.song_number = 0;
+        // $scope.playlist_length = 0;
 
         $scope.reset = function () {
             $scope.playing = "";

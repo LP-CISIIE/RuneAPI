@@ -2,16 +2,26 @@
  * Created by LocoMan on 26/02/2016.
  */
 rune.controller('MainController',
-    ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', function($scope, $http, $rootScope, runeCurrent, Rune){
+    ['$scope', '$http', '$rootScope', 'runeCurrent', 'Rune', '$localStorage', '$sessionStorage', function($scope, $http, $rootScope, runeCurrent, Rune, $localStorage, $sessionStorage){
 
-        $rootScope.root = "http://rune.ddns.net:83";
+        $rootScope.root = "http://192.168.1.14:83";
         $scope.show = 1;
-        $scope.show_player = true;
-        $scope.show_control = true;
+        $scope.show_player = false;
+        $scope.show_control = false;
+        $scope.show_playlist = true;
         $scope.show_manager = false;
         $scope.show_settings = false;
-        $scope.show_credits = false;
         $scope.show_mpd = false;
+        $scope.show_credits = false;
+        $scope.responseDirs = [];
+        $scope.dir = "";
+        $scope.newDir = {name:""};
+
+
+        // $scope.$storage = $localStorage.$default({
+        //     counter: 42
+        // });
+        // console.log($localStorage);
 
         $rootScope.runes =[];
         $scope.rune_select = $rootScope.rune;
@@ -20,9 +30,16 @@ rune.controller('MainController',
             $rune = new Rune(JSON.parse(rune));
             console.log("CHANGEMENT DE RUNE POUR : " + $rune);
             runeCurrent.rune = $rune;
+            
+            // change the API IP
             $rootScope.root = $rune.ip2;
-            console.log($rune.ip2);
+            // get the informations about the current rune's music player deamon
             $rootScope.player_status();
+            
+            // empty the filesystem interface
+            $scope.newDir = {name:""};
+            $scope.dir = "";
+            $rootScope.getDir($scope.newDir);
         };
 /*
         console.log($rootScope.runes); // :/
