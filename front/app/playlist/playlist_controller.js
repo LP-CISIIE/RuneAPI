@@ -20,6 +20,15 @@ rune.controller('PlaylistController',
                 })
         };
 
+        /*$scope.playlist_add = function(url){
+         console.log(url);
+         $http.get($rootScope.root + '/playlist/add/'+url)
+         .then(function(response){
+         console.log(response);
+         });
+         $scope.playlist_get();
+         };*/
+
         // repeat
         $scope.playlist_repeat = function (){
             $obj = JSON.stringify({"playlist":$scope.playlist.repeat});

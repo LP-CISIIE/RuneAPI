@@ -209,6 +209,30 @@ class playlistController
         }
     }
 
+    public static function playlist_add($app, $url)
+    {
+        $app->response->headers->set('Content-Type', 'application/json');
+        // l'url du html à récupérer
+        $html = file_get_contents($app->rootUri . '/command/?cmd=add'.$url);
+        $response = trim($html);
+
+        if($response == 'OK'){
+            $app->response->setStatus(200);
+            echo json_encode(array(
+                "HTTP" => 200,
+                "Object" => "=== Add ".$url. " ===",
+                "message" => "Done".$html
+            ));
+        }else{
+            $app->response->setStatus(500);
+            echo json_encode(array(
+                "HTTP" => 500,
+                "Object" => "=== Error adding ".$url. " ===",
+                "message" => $html
+            ));
+        }
+    }
+
     public static function parsePlaylist($resp)
     {
         if (is_null($resp)) {
