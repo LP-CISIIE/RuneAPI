@@ -75,21 +75,20 @@
             </ul>
 
             <!-- sidebar playlist -->
-            <ul id="sidePlaylist" class="side-nav" style="width: 240px; left: 0px;">
+            <ul id="sidePlaylist" class="side-nav" style="width: 240px;">
                 <li class="no-padding">
-                    <div class="row">
+                    <div class="row" ng-controller="PlaylistController">
                         <div class="col s12 m10 offset-m1 l10 offset-l1">
+                            <button class="btn light-blue center-align" ng-click="playlist_get()"><i class="material-icons">replay</i></button>
                             <table class="highlight striped centered">
                                 <thead>
                                 <tr>
                                     <th data-field="titre">Titre</th>
-                                    <th data-field="artiste">Artiste</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="track in tracks | orderBy: 'track.Id' " ng-click="playOnClick(track.Id)">
                                     <td>{{ track.Title }}</td>
-                                    <td>{{ track.Artist }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -100,8 +99,8 @@
 
             <div class="row">
                 <div class="row">
-                    <a class="button-collapse" href="#" data-activates="sidebar" class="button-collapse top-nav ng-isolate-scope" data-sidenav="left" data-closeonclick="false"><i class="material-icons" style="font-size: 50px">menu</i></a>
-                    <a href="#" data-activates="sidePlaylist" class="button-collapse top-nav ng-isolate-scope" data-sidenav="right" data-closeonclick="false"><i class="material-icons" style="font-size: 50px">queue music</i></a>
+                    <a href="#" data-activates="sidebar" class="button-collapse top-nav ng-isolate-scope" data-sidenav="left" data-closeonclick="false"><i class="material-icons" style="font-size: 50px">menu</i></a>
+                    <a href="#" data-activates="sidePlaylist" class="button-collapse top-nav ng-isolate-scope right" data-sidenav="right" data-closeonclick="false"><i class="material-icons" style="font-size: 50px;">library_music</i></a>
                 </div>
                 <div class="center">
                     <h3>RuneAudio</h3>
