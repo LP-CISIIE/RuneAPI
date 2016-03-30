@@ -29,18 +29,16 @@ rune.controller('PlaylistController',
             $http.put($rootScope.root + '/playlist/add', $url)
                 .then(function(response){
                 console.log(response);
-            });
-            $scope.playlist_get();
+            }).finally(function(){$scope.playlist_get()});
+
          };
 
         // remove song from the playlist
         $scope.playlist_remove = function (track){
-            console.log(track.Id);
-            $http.get($rootScope.root + '/playlist/playlistRemove/' + track.Id)
+            $http.get($rootScope.root + '/playlist/playlistRemove/' + track.Pos)
                 .then(function(response){
                     console.log(response);
-                });
-            $scope.playlist_get();
+                }).finally(function(){$scope.playlist_get()});
         };
 
         // repeat
@@ -127,9 +125,9 @@ rune.controller('PlaylistController',
         };
 
         // play song on click
-        $scope.playOnClick = function (id){
-            console.log(id);
-            $http.get($rootScope.root + '/player/playOnClick/'+id)
+        $scope.play_on_click = function (track){
+            console.log(track.Pos);
+            $http.get($rootScope.root + '/player/playOnClick/' + track.Pos)
                 .then(function(response){
                     console.log(response);
                 });

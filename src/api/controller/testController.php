@@ -40,8 +40,7 @@ class testController
             "root" => $key[0]->dir,
             "dir" => $arr
         );
-
-
+        
         echo json_encode($obj);
     }
 
