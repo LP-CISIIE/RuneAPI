@@ -22,8 +22,6 @@ rune.controller('PlaylistController',
                 })
         };
 
-<<<<<<< HEAD
-=======
         //add song to the playlist
         $scope.playlist_add = function(){
             $url="/mnt/MPD/USB";
@@ -44,7 +42,6 @@ rune.controller('PlaylistController',
                 });
             $scope.playlist_get();
         };
->>>>>>> 599b425716713d92e344eeb1148768cf4d43c4cc
 
         // repeat
         $scope.playlist_repeat = function (){
