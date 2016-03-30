@@ -1,6 +1,6 @@
 {
   "name": "Runeapi",
   "tagline": "Unofficial API and Interface for RuneAudio",
-  "body": "### RuneAudio : “One player to rune them all.”\r\nRuneAudio est un logiciel libre qui permet de transformer un micro-pc (raspberry, odroid...) en un système HI-FI. A partir d'une source il est alors possible de transmettre un son à partir de plusieurs sources (webradio, NAS, USB).\r\n!(http://www.runeaudio.com/assets/img/how-it-works.png)\r\n\r\n\r\n",
+  "body": "### RuneAudio : “One player to rune them all.”\r\nRuneAudio est un logiciel libre qui permet de transformer un micro-pc (raspberry, odroid...) en un système HI-FI. A partir d'une source il est alors possible de transmettre un son à partir de plusieurs sources (webradio, NAS, USB).\r\n\r\n\r\n\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
