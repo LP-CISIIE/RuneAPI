@@ -31,9 +31,9 @@ class settingsController
                     "timezone" => $selects[0]->find('option[selected]', 0)->value
                 ),
                 "kernel" => array(
-                    "linux_kernel" => $selects[1]->find('option[selected]', 0)->value,
-                    "i2s_modules" => "bonjour",
-                    "sound_signature" => $selects[3]->find('option[selected]', 0)->value
+//                    "linux_kernel" => $selects[1]->find('option[selected]', 0)->value,
+//                    "i2s_modules" => "bonjour",
+//                    "sound_signature" => $selects[3]->find('option[selected]', 0)->value
                 ),
                 "features" => array(
                     "airplay" => $redis->hGet('airplay', 'enable'),
