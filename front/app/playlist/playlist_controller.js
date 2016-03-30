@@ -9,6 +9,7 @@ rune.controller('PlaylistController',
         $scope.playlist.sound = false;
 
         $scope.playlist_get = function(){
+            console.log("playlistGET");
             tracks = [];
             $scope.tracks = [];
             $http.get($rootScope.root + '/playlist/playlist')
@@ -20,14 +21,6 @@ rune.controller('PlaylistController',
                 })
         };
 
-        /*$scope.playlist_add = function(url){
-         console.log(url);
-         $http.get($rootScope.root + '/playlist/add/'+url)
-         .then(function(response){
-         console.log(response);
-         });
-         $scope.playlist_get();
-         };*/
 
         // repeat
         $scope.playlist_repeat = function (){

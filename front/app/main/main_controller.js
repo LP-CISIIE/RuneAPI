@@ -6,9 +6,9 @@ rune.controller('MainController',
 
         $rootScope.root = "http://192.168.1.27:83";
         $scope.show = 1;
-        $scope.show_player = false;
+        $scope.show_player = true;
         $scope.show_control = false;
-        $scope.show_playlist = true;
+        $scope.show_playlist = false;
         $scope.show_manager = false;
         $scope.show_settings = false;
         $scope.show_mpd = false;
