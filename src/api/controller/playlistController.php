@@ -209,28 +209,22 @@ class playlistController
         }
     }
 
-    public static function playlist_add($app, $url)
+    public static function playlistAdd($app)
     {
-        $app->response->headers->set('Content-Type', 'application/json');
-        // l'url du html à récupérer
-        $html = file_get_contents($app->rootUri . '/command/?cmd=add'.$url);
-        $response = trim($html);
+        $url = $app->request->getBody();
+        $socket = openMpdSocket('/run/mpd.sock');
+        sendMpdCommand($socket, "add \"".html_entity_decode($url)."\"");
+        $infos = readMpdResponse($socket);
+        var_dump($infos);
+    }
 
-        if($response == 'OK'){
-            $app->response->setStatus(200);
-            echo json_encode(array(
-                "HTTP" => 200,
-                "Object" => "=== Add ".$url. " ===",
-                "message" => "Done".$html
-            ));
-        }else{
-            $app->response->setStatus(500);
-            echo json_encode(array(
-                "HTTP" => 500,
-                "Object" => "=== Error adding ".$url. " ===",
-                "message" => $html
-            ));
-        }
+    public static function playlistRemove($app, $num)
+    {
+        $num --;
+        $socket = openMpdSocket('/run/mpd.sock');
+        sendMpdCommand($socket, "deleteid", $num);
+        $infos = readMpdResponse($socket);
+        var_dump($infos);
     }
 
     public static function parsePlaylist($resp)

@@ -1,5 +1,4 @@
 ## RuneAPI
-***
 
 ### What's about ?
 

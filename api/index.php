@@ -72,8 +72,12 @@ if($config){
         playlistController::playlist($app, $action);
     })->name('playlist');
 
-    $app->get('/playlist/add/:url', function($url) use ($app) {
-        playerController::playOnClick($app, $url);
+    $app->put('/playlist/add', function() use ($app) {
+        playlistController::playlistAdd($app);
+    });
+
+    $app->get('/playlist/playlistRemove/:num', function($num) use ($app) {
+        playlistController::playlistRemove($app, $num);
     });
 
     $app->get('/volume/:vol', function($vol) use ($app) {
