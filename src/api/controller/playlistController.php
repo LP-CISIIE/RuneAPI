@@ -209,10 +209,12 @@ class playlistController
         }
     }
 
-    public static function playlist_add($app, $url)
+    public static function playlist_add($app)
     {
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
+        $url = $app->request->getBody();
+        var_dump($url);
         $html = file_get_contents($app->rootUri . '/command/?cmd=add'.$url);
         $response = trim($html);
 

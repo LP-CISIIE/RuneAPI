@@ -20,14 +20,15 @@ rune.controller('PlaylistController',
                 })
         };
 
-        /*$scope.playlist_add = function(url){
-         console.log(url);
-         $http.get($rootScope.root + '/playlist/add/'+url)
-         .then(function(response){
-         console.log(response);
-         });
-         $scope.playlist_get();
-         };*/
+        $scope.playlist_add = function(){
+            $url="/LILIUSM/[Volume 2] Salut C'est Cool - [2015] Sur le thème des grandes découvertes (CD 2) MP3/01 - Techno toujours pareil.mp3/";
+            console.log($url);
+            $http.put($rootScope.root + '/playlist/add', $url)
+                .then(function(response){
+                console.log(response);
+            });
+            $scope.playlist_get();
+         };
 
         // repeat
         $scope.playlist_repeat = function (){
