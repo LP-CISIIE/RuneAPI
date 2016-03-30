@@ -26,13 +26,13 @@ class settingsController
         $obj = array(
             "settings" => array(
                 "environment" => array(
-                    "hostname" => $inputs[0]->getAttribute('value'),
-                    "ntp_server" => $inputs[1]->getAttribute('value'),
-                    "timezone" => $selects[0]->find('option[selected]', 0)->value
+                    "hostname" => $redis->get('hostname'),
+                    "ntp_server" => $redis->get('ntpserver'),
+                    "timezone" => $redis->get('timezone')
                 ),
                 "kernel" => array(
 //                    "linux_kernel" => $selects[1]->find('option[selected]', 0)->value,
-//                    "i2s_modules" => "bonjour",
+                    "i2s_modules" => $redis->get('i2smodule'),
 //                    "sound_signature" => $selects[3]->find('option[selected]', 0)->value
                 ),
                 "features" => array(
@@ -43,8 +43,8 @@ class settingsController
                     "spotify_password" => $redis->hGet('spotify', 'pass'),
                     "upnp_dlna" => $redis->hGet('dlna', 'enable'),
                     "upnp_dlna_name" => $redis->hGet('dlna', 'name'),
-                    "usb_automount" => "unknown",
-                    "display_album_cover" => "unknown",
+                    "usb_automount" => $redis->get('udevil'),
+                    "coverart" => $redis->get('coverart'),
                     "lastfm" => $redis->hGet('lastfm', 'enable'),
                     "lastfm_username" => $redis->hGet('lastfm', 'user'),
                     "lastfm_password" => $redis->hGet('lastfm', 'pass'),
@@ -63,6 +63,12 @@ class settingsController
         $data = json_decode($app->request->getBody());
         var_dump($data);
 
+        $redis = new \Redis();
+        $redis->pconnect('127.0.0.1');
+
+        (empty($data->coverart)) ? '' : $redis->set('coverart', $data->coverart);
+
+
         $data = array(
             "features[airplay][enable]" => (empty($data->airplay)) ? 'défaut' : $data->airplay,
             "features[airplay][name]" => (empty($data->airplay_name)) ? null : $data->airplay_name,
@@ -72,7 +78,6 @@ class settingsController
             "features[dlna][enable]" => (empty($data->dlna)) ? 'défaut' : $data->dlna,
             "features[dlna][name]" => (empty($data->dlna_name)) ? null : $data->dlna_name,
             "features[udevil]" => (empty($data->udevil)) ? 'défaut' : $data->udevil,
-            "features[coverart]" => (empty($data->coverart)) ? 'défaut' : $data->coverart,
             "features[lastfm][enable]" => (empty($data->lastfm)) ? 'défaut' : $data->lastfm,
             "features[lastfm][user]" => (empty($data->lastfm_user)) ? null : $data->lastfm_user,
             "features[lastfm][pass]" => (empty($data->lastfm_pass)) ? null : $data->lastfm_pass,

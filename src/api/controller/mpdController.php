@@ -7,7 +7,7 @@
 			$app->response->headers->set('Content-Type', 'application/json');
 	        
 	        // l'url du html à récupérer
-	        $html = file_get_contents($app->rootUri . "mpd/");
+	        $html = file_get_contents($app->rootUri . "/mpd/");
 	        // on créé un élément DOM
 	        $dom = new \DOMDocument();
 	        // on rempli le DOM avec le HTML précèdemment récupéré

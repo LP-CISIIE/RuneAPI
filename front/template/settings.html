@@ -18,7 +18,7 @@
                             <label><strong>Airplay</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="airplay.enable" ng-click="airplay_enable()">
+                                <input type="checkbox" ng-model="airplay.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
@@ -30,7 +30,7 @@
                             <label for="airplay_name">Airplay Name</label>
                         </div>
                         <div>
-                            <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="airplay_name()"><i class="material-icons">edit</i></button>
+                            <button class="btn waves-effect waves-light" ng-model="airplay" ng-click="change_settings()"><i class="material-icons">edit</i></button>
                         </div>
                     </td>
                 </tr>
@@ -42,7 +42,7 @@
                             <label><strong>Spotify</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="spotify.enable" ng-click="spotify_enable()">
+                                <input type="checkbox" ng-model="spotify.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
@@ -57,18 +57,19 @@
                             <input id="spotify_password" ng-model="spotify.password" type="password" class="validate">
                             <label for="spotify_password">Password</label>
                         </div>
-                        <div><button class="btn waves-effect waves-light" ng-model="spotify" ng-click="spotify_account()"><i class="material-icons">edit</i></button></div>
+                        <div><button class="btn waves-effect waves-light" ng-model="spotify" ng-click="change_settings()"><i class="material-icons">edit</i></button></div>
                     </td>
                 </tr>
 
                 <!-- UPnP DLNA -->
+                <tr>
                 <tr>
                     <td>
                         <div class="switch col s2">
                             <label><strong>UPnP / DLNA</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="upnp.enable" ng-click="upnp_enable()">
+                                <input type="checkbox" ng-model="upnp.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
@@ -80,7 +81,7 @@
                             <label for="upnp_name">UPnP / DLNA name</label>
                         </div>
                         <div>
-                            <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="upnp_name()"><i class="material-icons">edit</i></button>
+                            <button class="btn waves-effect waves-light" ng-model="upnp" ng-click="change_settings()"><i class="material-icons">edit</i></button>
                         </div>
                     </td>
                 </tr>
@@ -92,7 +93,7 @@
                             <label><strong>Last.fm</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="lastfm.enable" ng-click="lastfm_enable()">
+                                <input type="checkbox" ng-model="lastfm.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
@@ -108,7 +109,7 @@
                             <label for="lastfm_password">Password</label>
                         </div>
                         <div>
-                            <button class="btn waves-effect waves-light" ng-model="lastfm" ng-click="lastfm_account()"><i class="material-icons">edit</i></button>
+                            <button class="btn waves-effect waves-light" ng-model="lastfm" ng-click="change_settings()"><i class="material-icons">edit</i></button>
                         </div>
                     </td>
                 </tr>
@@ -120,7 +121,7 @@
                             <label><strong>USB Automount</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="usb.enable" ng-click="usb_enable()">
+                                <input type="checkbox" ng-model="usb.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
@@ -136,7 +137,7 @@
                             <label><strong>Display album cover</strong></label>
                             <label>
                                 Off
-                                <input type="checkbox" ng-model="album.enable" ng-click="album_enable()">
+                                <input type="checkbox" ng-model="album.enable" ng-click="change_settings()">
                                 <span class="lever"></span>
                                 On
                             </label>
