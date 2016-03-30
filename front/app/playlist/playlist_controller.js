@@ -8,7 +8,9 @@ rune.controller('PlaylistController',
         $scope.playlist.random = false;
         $scope.playlist.sound = false;
 
+        //refresh the playlist
         $scope.playlist_get = function(){
+            console.log("playlistGET");
             tracks = [];
             $scope.tracks = [];
             $http.get($rootScope.root + '/playlist/playlist')
@@ -20,14 +22,24 @@ rune.controller('PlaylistController',
                 })
         };
 
-        /*$scope.playlist_add = function(url){
-         console.log(url);
-         $http.get($rootScope.root + '/playlist/add/'+url)
-         .then(function(response){
-         console.log(response);
-         });
-         $scope.playlist_get();
-         };*/
+        //add song to the playlist
+        $scope.playlist_add = function(){
+            $url="/";
+            console.log($url);
+            $http.put($rootScope.root + '/playlist/add', $url)
+                .then(function(response){
+                console.log(response);
+            }).finally(function(){$scope.playlist_get()});
+
+         };
+
+        // remove song from the playlist
+        $scope.playlist_remove = function (track){
+            $http.get($rootScope.root + '/playlist/playlistRemove/' + track.Pos)
+                .then(function(response){
+                    console.log(response);
+                }).finally(function(){$scope.playlist_get()});
+        };
 
         // repeat
         $scope.playlist_repeat = function (){
@@ -113,9 +125,9 @@ rune.controller('PlaylistController',
         };
 
         // play song on click
-        $scope.playOnClick = function (id){
-            console.log(id);
-            $http.get($rootScope.root + '/player/playOnClick/'+id)
+        $scope.play_on_click = function (track){
+            console.log(track.Pos);
+            $http.get($rootScope.root + '/player/playOnClick/' + track.Pos)
                 .then(function(response){
                     console.log(response);
                 });

@@ -19,8 +19,6 @@ class testController
         $infos = readMpdResponse($socket);
         $obj = array("infos" => self::parsePlaylist($infos));
         echo json_encode($obj);
-
-
     }
 
     public static function test3($app)
@@ -42,8 +40,7 @@ class testController
             "root" => $key[0]->dir,
             "dir" => $arr
         );
-
-
+        
         echo json_encode($obj);
     }
 

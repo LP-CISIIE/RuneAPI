@@ -35,7 +35,7 @@
 
 <div class="row center">
     <button class="btn light-blue" ng-click="playlist_get()">Actualiser la playlist</button>
-    <button class="btn light-blue" ng-click="playlist_add()">Ajouter une musique</button>
+    <button class="btn light-blue" ng-click="playlist_add()">Ajouter toutes les musiques</button>
 </div>
 <div class="row">
     <div class="col s12 m10 offset-m1 l10 offset-l1">
@@ -47,15 +47,19 @@
                 <th data-field="artiste">Artiste</th>
                 <th data-field="album">Album</th>
                 <th data-field="duree">Durée</th>
+                <th data-field="duree">Play</th>
+                <th data-field="duree">Remove</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="track in tracks | orderBy: 'track.Id' " ng-click="playOnClick(track.Id)">
-                <td>{{ track.Id }}</td>
+            <tr ng-repeat="track in tracks | orderBy: 'track.Pos' ">
+                <td>{{ track.Pos }}</td>
                 <td>{{ track.Title }}</td>
                 <td>{{ track.Artist }}</td>
                 <td>{{ track.Album }}</td>
                 <td>{{ track.Time }}</td>
+                <td><button ng-model="track" class="btn-floating btn-large waves-effect waves-light green" ng-click="play_on_click(track)"><i class="material-icons">play_circle_filled</i></button></td>
+                <td><button ng-model="track" class="btn-floating btn-large waves-effect waves-light red" ng-click="playlist_remove(track)"><i class="material-icons">delete</i></button></td>
             </tr>
             </tbody>
         </table>

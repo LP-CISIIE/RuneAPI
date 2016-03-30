@@ -64,7 +64,6 @@ class playerController
 
     public static function playOnClick($app, $num)
     {
-        $num --;
         $app->response->headers->set('Content-Type', 'application/json');
         // l'url du html à récupérer
         $html = file_get_contents($app->rootUri . '/command/?cmd=play%20'.$num);
