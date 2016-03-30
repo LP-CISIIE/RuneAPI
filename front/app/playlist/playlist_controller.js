@@ -24,7 +24,7 @@ rune.controller('PlaylistController',
 
         //add song to the playlist
         $scope.playlist_add = function(){
-            $url="/mnt/MPD/USB";
+            $url="/";
             console.log($url);
             $http.put($rootScope.root + '/playlist/add', $url)
                 .then(function(response){
@@ -34,9 +34,9 @@ rune.controller('PlaylistController',
          };
 
         // remove song from the playlist
-        $scope.playlist_remove = function (id){
-            console.log(id);
-            $http.get($rootScope.root + '/playlist/playlistRemove/'+id)
+        $scope.playlist_remove = function (track){
+            console.log(track.Id);
+            $http.get($rootScope.root + '/playlist/playlistRemove/' + track.Id)
                 .then(function(response){
                     console.log(response);
                 });

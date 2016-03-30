@@ -220,9 +220,8 @@ class playlistController
 
     public static function playlistRemove($app, $num)
     {
-        $num --;
         $socket = openMpdSocket('/run/mpd.sock');
-        sendMpdCommand($socket, "deleteid", $num);
+        sendMpdCommand($socket, "deleteid ". $num);
         $infos = readMpdResponse($socket);
         var_dump($infos);
     }
