@@ -73,7 +73,11 @@ if($config){
     })->name('playlist');
 
     $app->put('/playlist/add', function() use ($app) {
-        playlistController::playlist_add($app);
+        playlistController::playlistAdd($app);
+    });
+
+    $app->get('/playlist/playlistRemove/:num', function($num) use ($app) {
+        playlistController::playlistRemove($app, $num);
     });
 
     $app->get('/volume/:vol', function($vol) use ($app) {

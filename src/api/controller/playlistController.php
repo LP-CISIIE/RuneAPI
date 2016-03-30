@@ -209,11 +209,20 @@ class playlistController
         }
     }
 
-    public static function playlist_add($app)
+    public static function playlistAdd($app)
     {
         $url = $app->request->getBody();
         $socket = openMpdSocket('/run/mpd.sock');
         sendMpdCommand($socket, "add \"".html_entity_decode($url)."\"");
+        $infos = readMpdResponse($socket);
+        var_dump($infos);
+    }
+
+    public static function playlistRemove($app, $num)
+    {
+        $num --;
+        $socket = openMpdSocket('/run/mpd.sock');
+        sendMpdCommand($socket, "deleteid", $num);
         $infos = readMpdResponse($socket);
         var_dump($infos);
     }

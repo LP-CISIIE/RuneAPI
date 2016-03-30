@@ -8,6 +8,7 @@ rune.controller('PlaylistController',
         $scope.playlist.random = false;
         $scope.playlist.sound = false;
 
+        //refresh the playlist
         $scope.playlist_get = function(){
             tracks = [];
             $scope.tracks = [];
@@ -20,6 +21,7 @@ rune.controller('PlaylistController',
                 })
         };
 
+        //add song to the playlist
         $scope.playlist_add = function(){
             $url="/mnt/MPD/USB";
             console.log($url);
@@ -29,6 +31,16 @@ rune.controller('PlaylistController',
             });
             $scope.playlist_get();
          };
+
+        // remove song from the playlist
+        $scope.playlist_remove = function (id){
+            console.log(id);
+            $http.get($rootScope.root + '/playlist/playlistRemove/'+id)
+                .then(function(response){
+                    console.log(response);
+                });
+            $scope.playlist_get();
+        };
 
         // repeat
         $scope.playlist_repeat = function (){
