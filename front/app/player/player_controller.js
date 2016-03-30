@@ -67,6 +67,7 @@ rune.controller('PlayerController',
             $http.get($rootScope.root + '/volume/' + $scope.volume)
                 .then(function(response){
                     console.log("=== VOLUME ===");
+                    console.log(response);
                 })
         };
 

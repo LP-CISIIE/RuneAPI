@@ -7,8 +7,7 @@ class soundController
     public static function volume($app, $vol)
     {
         $app->response->headers->set('Content-Type', 'application/json');
-
-        $html = file_get_contents($app->rootUri . '/command/?cmd=setvol%200' . $vol);
+        $html = file_get_contents($app->rootUri . '/command/?cmd=setvol%20' . $vol);
         $response = trim($html);
 
         if($response == 'OK'){
@@ -23,7 +22,7 @@ class soundController
             echo json_encode(array(
                 "HTTP" => 500,
                 "Object" => "volume",
-                "message" => $html
+                "message" => $response
             ));
         }
 

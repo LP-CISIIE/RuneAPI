@@ -13,7 +13,7 @@ rune.controller('PlaylistController',
             console.log("playlistGET");
             tracks = [];
             $scope.tracks = [];
-            $http.get($rootScope.root + '/playlist/playlist')
+            $http.get($rootScope.root + '/playlist')
                 .then(function(response){
                     response.data.infos.forEach(function(infos){
                         tracks.push(infos);
@@ -42,10 +42,9 @@ rune.controller('PlaylistController',
         };
 
         // repeat
-        $scope.playlist_repeat = function (){
-            $obj = JSON.stringify({"playlist":$scope.playlist.repeat});
-            console.log($obj);
-            if($obj== true){
+        $scope.playlist_repeat = function (playlist){
+            console.log(playlist);
+            if(playlist.repeat == true){
                 $scope.playlist_repeatOn();
             }
             else{
@@ -70,10 +69,8 @@ rune.controller('PlaylistController',
         };
 
         // random
-        $scope.playlist_random = function (){
-            $obj = JSON.stringify({"playlist":$scope.playlist.random});
-            console.log($obj);
-            if($obj== true){
+        $scope.playlist_random = function (playlist){
+            if(playlist.random == true){
                 $scope.playlist_randomOn();
             }
             else{
@@ -97,10 +94,8 @@ rune.controller('PlaylistController',
         };
 
         // sound repeat
-        $scope.playlist_soundRepeat = function (){
-            $obj = JSON.stringify({"playlist":$scope.playlist.sound});
-            console.log($obj);
-            if($obj== true){
+        $scope.playlist_soundRepeat = function (playlist){
+            if(playlist.sound == true){
                 $scope.playlist_soundRepeatOn();
             }
             else{
@@ -147,7 +142,7 @@ rune.controller('PlaylistController',
             // make the json params to post request
             $data = [];
             $data.push({'dir' : $scope.dir});
-            $http.post($rootScope.root + '/test3', JSON.stringify($data))
+            $http.post($rootScope.root + '/filesystem', JSON.stringify($data))
                 .then(function(response){
                     response.data.dir.forEach(function(data){
                         $scope.responseDirs.push(data);

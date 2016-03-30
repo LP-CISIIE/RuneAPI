@@ -7,7 +7,7 @@
             <label><strong>Replay</strong></label>
             <label>
                 Off
-                <input type="checkbox" ng-model="playlist.repeat" ng-click="playlist_repeat()">
+                <input type="checkbox" ng-model="playlist.repeat" ng-click="playlist_repeat(playlist)">
                 <span class="lever"></span>
                 On
             </label>
@@ -16,7 +16,7 @@
             <label><strong>Random</strong></label>
             <label>
                 Off
-                <input type="checkbox" ng-model="playlist.random" ng-click="playlist_random()">
+                <input type="checkbox" ng-model="playlist.random" ng-click="playlist_random(playlist)">
                 <span class="lever"></span>
                 On
             </label>
@@ -25,7 +25,7 @@
             <label><strong>Sound</strong></label>
             <label>
                 Off
-                <input type="checkbox" ng-model="playlist.sound" ng-click="playlist_soundRepeat()">
+                <input type="checkbox" ng-model="playlist.sound" ng-click="playlist_soundRepeat(playlist)">
                 <span class="lever"></span>
                 On
             </label>

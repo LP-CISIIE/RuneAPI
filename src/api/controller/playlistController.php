@@ -12,7 +12,7 @@ require_once('/var/www/app/libs/runeaudio.php');
 
 class playlistController
 {
-    public static function playlist($app, $action)
+    public static function playlist($app, $action = null)
     {
         switch($action) {
             case 'repeatOn' :
@@ -40,7 +40,7 @@ class playlistController
                 self::getFilePath($app);
                 break;
             default:
-                echo "It works";
+                self::getPlaylist($app);
                 break;
         }
     }
@@ -142,14 +142,14 @@ class playlistController
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
-                "Object" => "repeat off",
+                "Object" => "repeat on",
                 "message" => "Done"
             ));
         }else{
             $app->response->setStatus(500);
             echo json_encode(array(
                 "HTTP" => 500,
-                "Object" => "repeat off",
+                "Object" => "repeat on",
                 "message" => $html
             ));
         }
@@ -174,14 +174,14 @@ class playlistController
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
-                "Object" => "random on",
+                "Object" => "random off",
                 "message" => "Done"
             ));
         }else{
             $app->response->setStatus(500);
             echo json_encode(array(
                 "HTTP" => 500,
-                "Object" => "random on",
+                "Object" => "random off",
                 "message" => $html
             ));
         }
@@ -196,14 +196,14 @@ class playlistController
             $app->response->setStatus(200);
             echo json_encode(array(
                 "HTTP" => 200,
-                "Object" => "random off",
+                "Object" => "random on",
                 "message" => "Done"
             ));
         }else{
             $app->response->setStatus(500);
             echo json_encode(array(
                 "HTTP" => 500,
-                "Object" => "random off",
+                "Object" => "random on",
                 "message" => $html
             ));
         }
@@ -224,6 +224,29 @@ class playlistController
         sendMpdCommand($socket, "deleteid ". $num);
         $infos = readMpdResponse($socket);
         var_dump($infos);
+    }
+
+    public static function filesystem($app)
+    {
+        $data = $app->request->getBody();
+        $key = json_decode($data);
+        if(isset($key[0]->dir)){
+            $dir = '/mnt/MPD/USB/'.$key[0]->dir;
+        }else{
+            $dir = '/mnt/MPD/USB/';
+        }
+        //     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
+        $files1 = scandir($dir);
+        $arr = [];
+        foreach($files1 as $file){
+            array_push($arr, array("name" => $file));
+        }
+        $obj = array(
+            "root" => $key[0]->dir,
+            "dir" => $arr
+        );
+
+        echo json_encode($obj);
     }
 
     public static function parsePlaylist($resp)

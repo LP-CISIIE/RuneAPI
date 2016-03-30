@@ -13,35 +13,19 @@ class testController
 {
     public static function test($app)
     {
-        $app->response->headers->set('Content-Type', 'application/json');
-        $socket = openMpdSocket('/run/mpd.sock');
-        sendMpdCommand($socket, 'playlistinfo');
-        $infos = readMpdResponse($socket);
-        $obj = array("infos" => self::parsePlaylist($infos));
-        echo json_encode($obj);
-    }
+//        $app->response->headers->set('Content-Type', 'application/json');
+//        $socket = openMpdSocket('/run/mpd.sock');
+//        sendMpdCommand($socket, 'playlistinfo');
+//        $infos = readMpdResponse($socket);
+//        $obj = array("infos" => self::parsePlaylist($infos));
+//        echo json_encode($obj);
 
-    public static function test3($app)
-    {
-        $data = $app->request->getBody();
-        $key = json_decode($data);
-        if(isset($key[0]->dir)){
-            $dir = '/mnt/MPD/USB/'.$key[0]->dir;
-        }else{
-            $dir = '/mnt/MPD/USB/';
-        }
-        //     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
-        $files1 = scandir($dir);
-        $arr = [];
-        foreach($files1 as $file){
-            array_push($arr, array("name" => $file));
-        }
-        $obj = array(
-            "root" => $key[0]->dir,
-            "dir" => $arr
-        );
+        // connect to the database
+        $redis = new \Redis();
+        $redis->pconnect('127.0.0.1');
         
-        echo json_encode($obj);
+        $data= $redis->get('debugdata');
+        var_dump($data);
     }
 
     public static function parsePlaylist($resp)

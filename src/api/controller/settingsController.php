@@ -99,9 +99,6 @@ class settingsController
     public static function settingsTest($app)
     {
         $socket = openMpdSocket('/run/mpd.sock');
-//        $status = sysCmd("mpc status | grep '\[' | cut -d '[' -f 2 | cut -d ']' -f 1");
-//        $sock = openSpopSocket('127.0.0.1', '80', 1);
-//        $song = getTrackInfo($socket, '1');
         sendMpdCommand($socket, 'status');
         $song = readMpdResponse($socket);
 //        var_dump(self::parsePlaylist($song));

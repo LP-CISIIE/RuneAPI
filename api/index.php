@@ -13,8 +13,6 @@ use api\controller\mpdController;
 use api\controller\networkController;
 use api\controller\runeController;
 use api\controller\debugController;
-use api\controller\creditsController;
-// use api\controller\infosController;
 
 $app = new Slim\Slim(array(
     'view' => new \Slim\Views\Twig()
@@ -68,6 +66,10 @@ if($config){
         playerController::playOnClick($app, $num);
     });
 
+    $app->get('/playlist', function() use ($app) {
+        playlistController::playlist($app);
+    })->name('playlist');
+
     $app->get('/playlist/:action', function($action) use ($app) {
         playlistController::playlist($app, $action);
     })->name('playlist');
@@ -104,17 +106,9 @@ if($config){
         sourcesController::EditSource($app,$id);
     })->name('editSource');
 
-    $app->get('/test', function() use ($app) {
-        settingsController::settingsTest($app);
-    })->name('test');
-
-    $app->get('/test2', function() use ($app) {
-        testController::test($app);
-    })->name('test2');
-
-    $app->post('/test3', function() use ($app) {
-        testController::test3($app);
-    })->name('test3');
+    $app->post('/filesystem', function() use ($app) {
+        playlistController::filesystem($app);
+    })->name('filesystem');
 
     $app->get('/network', function() use ($app) {
         networkController::getNetwork($app);
@@ -137,7 +131,7 @@ if($config){
     });
 
     $app->get('/debug', function() use ($app){
-        debugController::getLog($app);
+        debugController::debug($app);
     });
 
     $app->get('/song', function() use ($app){
@@ -147,6 +141,10 @@ if($config){
     $app->get('/playerStatus', function() use ($app){
         playerController::playerStatus($app);
     });
+
+    $app->get('/test', function() use ($app) {
+        testController::test($app);
+    })->name('test');
 
     $app->run();
 }

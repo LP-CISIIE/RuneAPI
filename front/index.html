@@ -13,6 +13,7 @@
     <script src="lib/angular-materialize.js"></script>
     <script src="lib/materialize/js/materialize.min.js"></script>
     <script src="lib/ngStorage.min.js"></script>
+    <script src="lib/clipboard.js-master/dist/clipboard.min.js"></script>
 
     <script src="app/app.js"></script>
 
@@ -40,8 +41,8 @@
     <script src="app/mpd/mpd_controller.js"></script>
     <script src="app/mpd/mpd_directive.js"></script>
 
-    <script src="app/credits/credits_controller.js"></script>
-    <script src="app/credits/credits_directive.js"></script>
+    <script src="app/debug/debug_controller.js"></script>
+    <script src="app/debug/debug_directive.js"></script>
 
     <link rel="stylesheet" href="lib/materialize/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -55,22 +56,22 @@
             <!--sidebar-->
             <ul id="sidebar" class="side-nav" style="width: 240px; left: 0px;">
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=true;show_playlist=false;show_manager=false;show_settings=false;show_mpd=false;show_credits=false;show_control=true"><i class="material-icons">headset</i> Player</a>
+                    <a href="#" ng-click="show_player=true;show_playlist=false;show_manager=false;show_settings=false;show_mpd=false;show_debug=false;show_control=true"><i class="material-icons">headset</i> Player</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_playlist=true;show_manager=false;show_settings=false;show_mpd=false;show_credits=false;show_control=true"><i class="material-icons">library_music</i> Playlist</a>
+                    <a href="#" ng-click="show_player=false;show_playlist=true;show_manager=false;show_settings=false;show_mpd=false;show_debug=false;show_control=true"><i class="material-icons">library_music</i> Playlist</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=true;show_settings=false;show_mpd=false;show_credits=false;show_control=false"><i class="material-icons">add_to_queue</i> Rune Manager</a>
+                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=true;show_settings=false;show_mpd=false;show_debug=false;show_control=false"><i class="material-icons">add_to_queue</i> Rune Manager</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=true;show_mpd=false;show_credits=false;show_control=false"><i class="material-icons">settings</i> Settings</a>
+                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=true;show_mpd=false;show_debug=false;show_control=false"><i class="material-icons">settings</i> Settings</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=false;show_mpd=true;show_credits=false;show_control=false"><i class="material-icons">surround_sound</i> MPD Settings</a>
+                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=false;show_mpd=true;show_debug=false;show_control=false"><i class="material-icons">surround_sound</i> MPD Settings</a>
                 </li>
                 <li class="no-padding">
-                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=false;show_mpd=false;show_credits=true;show_control=false"><i class="material-icons">recent_actors</i> Crédits</a>
+                    <a href="#" ng-click="show_player=false;show_playlist=false;show_manager=false;show_settings=false;show_mpd=false;show_debug=true;show_control=false"><i class="material-icons">recent_actors</i> Debug</a>
                 </li>
             </ul>
 
@@ -134,8 +135,8 @@
             <mpd ng-show="show_mpd" />
         </div>
 
-        <div class="row" ng-controller="CreditsController">
-            <credits ng-show="show_credits"  />
+        <div class="row" ng-controller="DebugController">
+            <debug ng-show="show_debug"  />
         </div>
     </div>
 </body>

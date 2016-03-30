@@ -79,3 +79,10 @@
     width: 100%;
     background-color: #818181;
 }
+
+#clipboard_pre {
+    background-color: #818181;
+    color: white;
+    height: 600px;
+    overflow: scroll;
+}
