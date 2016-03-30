@@ -73,7 +73,7 @@ if($config){
     })->name('playlist');
 
     $app->put('/playlist/add', function() use ($app) {
-        playerController::playOnClick($app);
+        playlistController::playlist_add($app);
     });
 
     $app->get('/volume/:vol', function($vol) use ($app) {

@@ -21,7 +21,7 @@ rune.controller('PlaylistController',
         };
 
         $scope.playlist_add = function(){
-            $url="/LILIUSM/[Volume 2] Salut C'est Cool - [2015] Sur le thème des grandes découvertes (CD 2) MP3/01 - Techno toujours pareil.mp3/";
+            $url="/mnt/MPD/USB";
             console.log($url);
             $http.put($rootScope.root + '/playlist/add', $url)
                 .then(function(response){
