@@ -71,6 +71,7 @@ rune.controller('PlayerController',
                 })
         };
 
+
         // get current track info
         $scope.current_track = function () {
             // $scope.loading_track = true;

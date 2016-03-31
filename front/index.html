@@ -89,7 +89,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="track in tracks | orderBy: 'track.Id' " ng-click="playOnClick(track.Id)">
+                                <tr ng-repeat="track in tracks | orderBy: 'track.Pos' " ng-click="play_on_click(track)">
                                     <td>{{ track.Title }}</td>
                                 </tr>
                                 </tbody>

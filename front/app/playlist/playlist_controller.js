@@ -35,7 +35,7 @@ rune.controller('PlaylistController',
 
         // remove song from the playlist
         $scope.playlist_remove = function (track){
-            $http.get($rootScope.root + '/playlist/playlistRemove/' + track.Pos)
+            $http.get($rootScope.root + '/playlist/playlistRemove/' + track)
                 .then(function(response){
                     console.log(response);
                 }).finally(function(){$scope.playlist_get()});
