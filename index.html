@@ -86,6 +86,164 @@ Voici un exemple de déclaration de route: </p>
 <p>Nous avons choisit d'opter pour une interface minimaliste et facile d'utilisation, qui est aussi bien adapté à l'utilisation sur ordinateur, tablette ou mobile.</p>
 </blockquote>
 
+<h3>
+<a id="routes-de-lapi" class="anchor" href="#routes-de-lapi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Routes de l'API</h3>
+
+<p><strong>GET</strong> /player/play      :   Lance la musique</p>
+
+<p><strong>GET</strong> /player/pause     :   met la musique sur pause</p>
+
+<p><strong>GET</strong>  /player/stop      :   stop la musique</p>
+
+<p><strong>GET</strong> /player/next      :   passe à la musique précédente</p>
+
+<p><strong>GET</strong> /player/previous  :   passe à la musique précédente</p>
+
+<hr>
+
+<p><strong>GET</strong> /playlist/repeatOn             : lance la playlist en boucle</p>
+
+<p><strong>GET</strong>  /playlist/repeatOff            : la playlist s’arrête à la fin</p>
+
+<p><strong>GET</strong> /playlist/SoundRepeatOn        : La musique est joué en boucle</p>
+
+<p><strong>GET</strong> /playlist/SoundRepeatOff       : La musique n'est plus joué en boucle</p>
+
+<hr>
+
+<p><strong>PUT</strong> /volume/:nb                    : Change le volume à nb (0 a 100)</p>
+
+<hr>
+
+<p><strong>GET</strong> /gestion/:pos/:temps           : A partir du n° dans la playlist définit le temps ( en seconde ) de la lecture.(avancer ou reculer la musique)</p>
+
+<hr>
+
+<p><strong>GET</strong> /sources                       : Récupère les sources USB uniquement</p>
+
+<p><strong>GET</strong> /sources/edit/:id              : Affiche un NAS</p>
+
+<hr>
+
+<p><strong>GET</strong> /sources                       : Modifier paramètre des sources</p>
+
+<hr>
+
+<p><strong>POST</strong> /sources/delete               : Supprime un nas</p>
+
+<p>`{</p>
+
+<p>"id" : ""</p>
+
+<p>}`</p>
+
+<p><strong>POST</strong> /sources/add                  : Ajoute une nouvelle source</p>
+
+<p>`{</p>
+
+<pre><code>"name" : "",
+
+"id" : "",
+
+"type" : "",
+
+"address" : "",
+
+"remotedir" : "",
+
+"nas" : "",
+
+"username" : "",
+
+"password" : "",
+
+"charset"  : "",
+
+"rsize" : "",
+
+"wsize" : "",
+
+"options" : "",
+
+"error" : ""
+</code></pre>
+
+<p>}`</p>
+
+<hr>
+
+<p><strong>GET</strong> /mpd                             : Récupère le page de configuration du MPD</p>
+
+<hr>
+
+<p><strong>PUT</strong> /mpd/analogique                  : Change l'output en analogique</p>
+
+<p><strong>PUT</strong> /mpd/hdmi                        : Change l'output en HDMI</p>
+
+<hr>
+
+<p><strong>POST</strong> /mpd                            : Modifie les paramètres du MPD</p>
+
+<p>`{</p>
+
+<pre><code>"mixer_type": "",
+
+"user": "",
+
+"log_level" : "",
+
+"state_file" : "",
+
+"ffmpeg" : "",
+
+"gapless_mp3_playback" : "",
+
+"dsd_usb" : "",
+
+"volume_normalization" : "",
+
+"audio_buffer_size" : "",
+
+"buffer_before_play" : "",
+
+"auto_update" : "n"
+</code></pre>
+
+<p>}`</p>
+
+<hr>
+
+<p><strong>GET</strong> /network                          : Récupère la page de configuration du network</p>
+
+<p><strong>GET</strong> /network/eth0                     : Récupère la page de configuration ethernet</p>
+
+<p><strong>GET</strong> /network/wlan0                    : Récupère la page de configuration wifi</p>
+
+<hr>
+
+<p><strong>POST</strong> /network                         : Modifie information de connexion</p>
+
+<p>`{</p>
+
+<pre><code>"name": "",
+
+"wireless": "",
+
+"dhcp" : "",
+
+"ip" : "",
+
+"netmask" : "",
+
+"gw" : "",
+
+"dns1" : "",
+
+"dns2" : ""
+</code></pre>
+
+<p>}`</p>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/LP-CISIIE/RuneAPI">RuneAPI</a> is maintained by <a href="https://github.com/LP-CISIIE">LP-CISIIE</a>.</span>
 
